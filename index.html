@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bhuwan Kandel — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --white:#ffffff;--off:#f8f9fa;--gray:#e9ecef;--gray2:#dee2e6;--gray3:#adb5bd;
+  --dark:#212529;--dark2:#495057;--dark3:#6c757d;
+  --accent:#2563eb;--accent2:#1d4ed8;--accent-bg:#eff6ff;
+  --green:#059669;--green-bg:#ecfdf5;
+  --sans:'DM Sans',-apple-system,sans-serif;
+  --serif:'DM Serif Display',Georgia,serif;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--white);color:var(--dark);line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+.wrap{max-width:960px;margin:0 auto;padding:0 2rem}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;height:60px;background:rgba(255,255,255,0.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--gray);display:flex;align-items:center;padding:0 2rem}
+.nav-inner{max-width:960px;margin:0 auto;width:100%;display:flex;align-items:center;justify-content:space-between}
+.nav-brand{font-family:var(--serif);font-size:1.1rem;color:var(--dark)}
+.nav-links{display:flex;gap:1.8rem;list-style:none}
+.nav-links a{font-size:0.78rem;font-weight:500;color:var(--dark3);letter-spacing:0.03em;transition:color 0.2s}
+.nav-links a:hover{color:var(--accent)}
+.nav-toggle{display:none;background:none;border:none;font-size:20px;color:var(--dark);cursor:pointer}
+
+/* HERO */
+.hero{padding:8rem 2rem 5rem;max-width:960px;margin:0 auto;display:grid;grid-template-columns:1fr 280px;gap:4rem;align-items:center}
+.hero-kicker{font-size:0.7rem;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:var(--accent);margin-bottom:1rem;display:inline-block;background:var(--accent-bg);padding:0.35rem 0.8rem;border-radius:4px}
+.hero h1{font-family:var(--serif);font-size:clamp(2.8rem,6vw,4.5rem);line-height:1.1;letter-spacing:-0.02em;margin-bottom:1.2rem}
+.hero h1 em{font-style:italic;color:var(--accent)}
+.hero-desc{font-size:1.05rem;color:var(--dark2);max-width:480px;line-height:1.75;margin-bottom:2rem}
+.hero-stats{display:flex;gap:2.5rem;margin-bottom:2.5rem}
+.hs{text-align:center}
+.hs-num{font-family:var(--serif);font-size:2rem;color:var(--accent);line-height:1}
+.hs-label{font-size:0.68rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--gray3);margin-top:0.3rem}
+.hero-btns{display:flex;gap:0.8rem}
+.btn{font-size:0.75rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;padding:0.85rem 1.8rem;border-radius:6px;display:inline-block;transition:all 0.2s;border:none;cursor:pointer}
+.btn-primary{background:var(--accent);color:#fff}
+.btn-primary:hover{background:var(--accent2);transform:translateY(-1px);box-shadow:0 4px 16px rgba(37,99,235,0.25)}
+.btn-outline{background:transparent;color:var(--dark);border:1px solid var(--gray2)}
+.btn-outline:hover{border-color:var(--dark)}
+.hero-photo{position:relative;display:flex;justify-content:center;align-items:center}
+.hero-photo-ring{width:280px;height:280px;border-radius:50%;display:flex;align-items:center;justify-content:center;position:relative}
+.hero-photo img{width:250px;height:250px;object-fit:cover;border-radius:50%;border:4px solid #fff;box-shadow:0 12px 40px rgba(37,99,235,0.15),0 0 0 1px var(--gray)}
+.hero-photo img:hover{transform:none}
+
+/* DIVIDER */
+.divider{max-width:960px;margin:0 auto;padding:0 2rem}
+.divider hr{border:none;height:1px;background:var(--gray)}
+
+/* SECTION */
+.section{padding:4.5rem 0}
+.section-head{margin-bottom:3rem}
+.section-label{font-size:0.65rem;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:var(--accent);background:var(--accent-bg);display:inline-block;padding:0.3rem 0.7rem;border-radius:4px;margin-bottom:0.8rem}
+.section-title{font-family:var(--serif);font-size:clamp(1.8rem,3.5vw,2.6rem);line-height:1.2;letter-spacing:-0.01em}
+.section-title em{font-style:italic;color:var(--accent)}
+.section-sub{font-size:0.92rem;color:var(--dark3);margin-top:0.6rem;max-width:480px}
+
+/* ABOUT */
+.about-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:4rem;align-items:start}
+.about-text{font-size:1.05rem;color:var(--dark2);line-height:1.8}
+.about-text::first-letter{font-size:2.8rem;font-weight:700;float:left;margin-right:0.4rem;line-height:1;color:var(--accent)}
+.about-list{display:flex;flex-direction:column;gap:0}
+.al-row{display:flex;justify-content:space-between;padding:0.85rem 0;border-bottom:1px solid var(--gray)}
+.al-row:first-child{border-top:1px solid var(--gray)}
+.al-k{font-size:0.7rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--gray3)}
+.al-v{font-size:0.9rem;font-weight:500;color:var(--dark);text-align:right}
+.al-v a:hover{color:var(--accent)}
+
+/* EXPERIENCE */
+.exp-item{display:grid;grid-template-columns:150px 1fr;gap:2rem;padding:1.8rem 0;border-bottom:1px solid var(--gray)}
+.exp-item:last-child{border-bottom:none}
+.exp-date{font-size:0.7rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--accent);padding-top:3px}
+.exp-role{font-family:var(--serif);font-size:1.15rem;margin-bottom:0.2rem}
+.exp-org{font-size:0.8rem;color:var(--dark3);margin-bottom:0.8rem}
+.exp-list{list-style:none;display:flex;flex-direction:column;gap:0.3rem}
+.exp-list li{font-size:0.88rem;color:var(--dark2);padding-left:1.1rem;position:relative;line-height:1.6}
+.exp-list li::before{content:'›';position:absolute;left:0;color:var(--accent);font-weight:700}
+
+/* CERTS */
+.cert-filter{display:flex;gap:0.35rem;flex-wrap:wrap;margin-bottom:2rem}
+.chip{font-size:0.7rem;font-weight:600;padding:0.45rem 1rem;border:1px solid var(--gray2);background:transparent;color:var(--dark3);cursor:pointer;border-radius:20px;transition:all 0.2s}
+.chip:hover{border-color:var(--dark3);color:var(--dark)}
+.chip.active{background:var(--dark);color:#fff;border-color:var(--dark)}
+.cert-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
+.cc{background:var(--off);border:1px solid var(--gray);border-radius:12px;padding:1.5rem;display:flex;flex-direction:column;gap:0.6rem;transition:all 0.25s;cursor:pointer}
+.cc:hover{box-shadow:0 8px 30px rgba(0,0,0,0.08);transform:translateY(-3px);border-color:var(--accent)}
+.cc-tag{font-size:0.6rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent)}
+.cc-title{font-family:var(--serif);font-size:0.95rem;line-height:1.35}
+.cc-org{font-size:0.75rem;color:var(--dark3);line-height:1.5}
+.cc-date{font-size:0.7rem;color:var(--gray3);margin-top:auto;padding-top:0.6rem;border-top:1px solid var(--gray)}
+.cc-view{font-size:0.68rem;font-weight:600;color:var(--accent);background:none;border:none;padding:0;cursor:pointer;text-align:left;margin-top:0.1rem}
+.cc-view:hover{color:var(--accent2)}
+
+/* LIGHTBOX */
+.lb{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.92);z-index:1000;align-items:center;justify-content:center;flex-direction:column}
+.lb.active{display:flex}
+.lb img{max-width:85%;max-height:65vh;border-radius:12px;box-shadow:0 20px 80px rgba(0,0,0,0.5)}
+.lb-cap{text-align:center;color:#fff;margin-top:1.2rem;max-width:600px}
+.lb-type{font-size:0.6rem;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:var(--accent);display:inline-block;margin-bottom:0.6rem}
+.lb-title{font-family:var(--serif);font-size:1.2rem;margin-bottom:0.4rem}
+.lb-issuer{font-size:0.8rem;color:rgba(255,255,255,0.5);margin-bottom:0.3rem}
+.lb-date{font-size:0.7rem;color:var(--accent)}
+.lb-x{position:absolute;top:16px;right:24px;font-size:2rem;color:#fff;cursor:pointer;opacity:0.6;background:none;border:none}
+.lb-x:hover{opacity:1}
+.lb-nav{position:absolute;inset:0;display:flex;align-items:center;justify-content:space-between;padding:0 20px;pointer-events:none}
+.lb-p,.lb-n{background:rgba(255,255,255,0.1);border:none;color:#fff;font-size:1.3rem;padding:0.8rem 1rem;border-radius:50%;cursor:pointer;pointer-events:auto;transition:background 0.2s}
+.lb-p:hover,.lb-n:hover{background:rgba(255,255,255,0.25)}
+
+/* PUBLICATIONS */
+.pub-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
+.pub-card{background:var(--off);border:1px solid var(--gray);border-radius:12px;padding:2rem;transition:all 0.25s}
+.pub-card:hover{box-shadow:0 8px 30px rgba(0,0,0,0.08);transform:translateY(-3px);border-color:var(--accent)}
+.pub-label{font-size:0.6rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);margin-bottom:0.8rem}
+.pub-title{font-family:var(--serif);font-size:1.15rem;line-height:1.35;margin-bottom:0.6rem}
+.pub-author{font-size:0.78rem;color:var(--dark3);margin-bottom:0.8rem}
+.pub-desc{font-size:0.85rem;color:var(--dark2);line-height:1.7;padding-top:0.8rem;border-top:1px solid var(--gray)}
+.pub-desc em{font-style:italic;color:var(--dark)}
+
+/* EDUCATION */
+.edu-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
+.edu-card{background:var(--off);border:1px solid var(--gray);border-radius:12px;padding:2rem;transition:all 0.25s}
+.edu-card:hover{box-shadow:0 8px 30px rgba(0,0,0,0.08);transform:translateY(-3px);border-color:var(--accent)}
+.edu-period{font-size:0.65rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);margin-bottom:1rem}
+.edu-degree{font-family:var(--serif);font-size:1.4rem;line-height:1.2;margin-bottom:0.5rem}
+.edu-degree em{font-weight:400;color:var(--dark3)}
+.edu-school{font-size:0.8rem;color:var(--dark3);line-height:1.6}
+
+/* SKILLS */
+.skills-row{display:grid;grid-template-columns:1fr 1fr;gap:2.5rem}
+.sk-title{font-size:0.65rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);margin-bottom:1.2rem;padding-bottom:0.6rem;border-bottom:2px solid var(--accent-bg)}
+.sk-tags{display:flex;flex-wrap:wrap;gap:0.4rem}
+.sk-tag{font-size:0.82rem;padding:0.4rem 0.9rem;background:var(--off);border:1px solid var(--gray);border-radius:6px;color:var(--dark2);transition:all 0.2s}
+.sk-tag:hover{border-color:var(--accent);color:var(--accent);background:var(--accent-bg)}
+
+/* LANGUAGES */
+.lang-row{display:flex;justify-content:space-between;padding:0.8rem 0;border-bottom:1px solid var(--gray)}
+.lang-name{font-size:1rem;font-weight:500}
+.lang-level{font-size:0.75rem;font-weight:600;color:var(--gray3);letter-spacing:0.08em;text-transform:uppercase}
+
+/* CONTACT */
+#contact{background:var(--accent);color:#fff}
+#contact .section-label{background:rgba(255,255,255,0.15);color:#fff}
+#contact .section-title{color:#fff}
+#contact .section-title em{color:#fff;opacity:0.7}
+#contact .section-sub{color:rgba(255,255,255,0.7)}
+.contact-row{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem}
+.ct-block{padding:1.5rem 0;border-top:2px solid rgba(255,255,255,0.2)}
+.ct-label{font-size:0.62rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.5);margin-bottom:0.6rem}
+.ct-val{font-size:0.95rem;font-weight:500;color:#fff;word-break:break-word}
+.ct-val a{color:#fff;transition:opacity 0.2s}
+.ct-val a:hover{opacity:0.7}
+
+/* FOOTER */
+footer{border-top:1px solid var(--gray);padding:2rem;margin-top:2rem}
+.footer-inner{max-width:960px;margin:0 auto;padding:0 2rem;display:flex;justify-content:space-between;align-items:center}
+.footer-text{font-size:0.72rem;color:var(--gray3)}
+.footer-text strong{color:var(--dark2);font-weight:600}
+
+/* REVEAL */
+.rv{opacity:0;transform:translateY(20px);transition:opacity 0.7s ease,transform 0.7s ease}
+.rv.on{opacity:1;transform:none}
+.d1{transition-delay:.05s}.d2{transition-delay:.1s}.d3{transition-delay:.15s}.d4{transition-delay:.2s}.d5{transition-delay:.25s}.d6{transition-delay:.3s}
+
+/* MOBILE */
+@media(max-width:900px){
+  nav{padding:0 1.5rem}.nav-links{display:none}.nav-links.open{display:flex;flex-direction:column;position:absolute;top:60px;left:0;right:0;background:#fff;border-bottom:1px solid var(--gray);padding:1.2rem 1.5rem;gap:0.8rem}
+  .nav-toggle{display:block}
+  .hero{grid-template-columns:1fr;gap:2rem;padding:6rem 1.5rem 3rem}
+  .hero-photo{order:-1}.hero-photo-ring{width:160px;height:160px}.hero-photo img{width:140px;height:140px}
+  .hero-stats{gap:1.5rem}.wrap{padding:0 1.5rem}.divider{padding:0 1.5rem}.section{padding:3rem 0}
+  .about-grid{grid-template-columns:1fr;gap:2.5rem}
+  .exp-item{grid-template-columns:1fr;gap:0.5rem}
+  .cert-grid,.pub-grid,.edu-grid,.skills-row{grid-template-columns:1fr}
+  .contact-row{grid-template-columns:1fr 1fr}
+  .footer-inner{flex-direction:column;gap:0.3rem;text-align:center}
+}
+@media(min-width:901px) and (max-width:1100px){
+  .cert-grid{grid-template-columns:repeat(2,1fr)}
+  .contact-row{grid-template-columns:1fr 1fr}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="#hero" class="nav-brand">Bhuwan Kandel</a>
+    <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')">&#9776;</button>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#certificates">Certificates</a></li>
+      <li><a href="#publications">Publications</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div>
+    <span class="hero-kicker">BBA Scholar · Capital Markets · Nepal</span>
+    <h1>Bhuwan <em>Kandel</em></h1>
+    <p class="hero-desc">Three years of hands-on stock market experience, a completed brokerage internship, and research presented at an international conference — all before finishing the BBA.</p>
+    <div class="hero-stats">
+      <div class="hs"><div class="hs-num">3+</div><div class="hs-label">Years</div></div>
+      <div class="hs"><div class="hs-num">14</div><div class="hs-label">Certificates</div></div>
+      <div class="hs"><div class="hs-num">2</div><div class="hs-label">Publications</div></div>
+    </div>
+    <div class="hero-btns">
+      <a href="#certificates" class="btn btn-primary">Certificates</a>
+      <a href="#contact" class="btn btn-outline">Contact</a>
+    </div>
+  </div>
+  <div class="hero-photo">
+    <div class="hero-photo-ring">
+      <img src="PP BHuwan.jpeg" alt="Bhuwan Kandel">
+    </div>
+  </div>
+</section>
+
+<div class="divider"><hr></div>
+
+<!-- ABOUT -->
+<section class="section" id="about">
+  <div class="wrap">
+    <div class="section-head rv">
+      <span class="section-label">About</span>
+      <h2 class="section-title">Who I <em>Am</em></h2>
+      <p class="section-sub">A finance-minded student who learns markets by working inside them.</p>
+    </div>
+    <div class="about-grid">
+      <div class="rv" style="transition-delay:.1s">
+        <p class="about-text">I'm a BBA student at Valley State College affiliated to Pokhara University with over three years of personal experience following the stock market. I completed a three-month internship at Sani Securities Pvt. Ltd. where I assisted in trade execution, analyzed NEPSE trends, and supported portfolio tracking for clients. My academic work centers on how global macroeconomic forces move the Nepal Stock Exchange.</p>
+      </div>
+      <div class="rv" style="transition-delay:.2s">
+        <div class="about-list">
+          <div class="al-row"><span class="al-k">Name</span><span class="al-v">Bhuwan Kandel</span></div>
+          <div class="al-row"><span class="al-k">Degree</span><span class="al-v">BBA</span></div>
+          <div class="al-row"><span class="al-k">College</span><span class="al-v">Valley State College, Chitwan</span></div>
+          <div class="al-row"><span class="al-k">University</span><span class="al-v">Pokhara University</span></div>
+          <div class="al-row"><span class="al-k">Graduation</span><span class="al-v">2026 (Expected)</span></div>
+          <div class="al-row"><span class="al-k">Phone</span><span class="al-v">9848515544</span></div>
+          <div class="al-row"><span class="al-k">Email</span><span class="al-v"><a href="mailto:kandelbhuwan9845@gmail.com">kandelbhuwan9845@gmail.com</a></span></div>
+          <div class="al-row"><span class="al-k">Location</span><span class="al-v">Chitwan, Nepal</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"><hr></div>
+
+<!-- EXPERIENCE -->
+<section class="section" id="experience">
+  <div class="wrap">
+    <div class="section-head rv">
+      <span class="section-label">Experience</span>
+      <h2 class="section-title">Where I've <em>Worked</em></h2>
+    </div>
+
+    <div class="exp-item rv" style="transition-delay:.05s">
+      <div class="exp-date">Aug — Nov 2025</div>
+      <div>
+        <div class="exp-role">Intern</div>
+        <div class="exp-org">Sani Securities Pvt. Ltd. — Stock Broker No. 42, licensed by SEBON</div>
+        <ul class="exp-list">
+          <li>Assisted in stock trading and client order execution</li>
+          <li>Analyzed NEPSE trends and company performance</li>
+          <li>Gained hands-on experience in TMS and brokerage operations</li>
+          <li>Supported portfolio tracking and basic investment analysis</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-item rv" style="transition-delay:.1s">
+      <div class="exp-date">Mar 2025</div>
+      <div>
+        <div class="exp-role">Peer Mentor</div>
+        <div class="exp-org">Valley State College, Nepali Share Market Workshop</div>
+        <ul class="exp-list">
+          <li>Delivered mentoring sessions on financial literacy and stock market basics</li>
+          <li>Helped students improve understanding of investment concepts</li>
+          <li>Encouraged analytical thinking and practical learning</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-item rv" style="transition-delay:.15s">
+      <div class="exp-date">Oct 2025</div>
+      <div>
+        <div class="exp-role">Research Paper Presenter</div>
+        <div class="exp-org">St. Paul Institute of Professional Studies, Indore, India</div>
+        <ul class="exp-list">
+          <li>Presented "Examining the Relations of Global Macroeconomic Indicators with Nepal Stock Exchange"</li>
+          <li>Participated in the International Conference on Research, Knowledge and Social Transformation</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-item rv" style="transition-delay:.2s">
+      <div class="exp-date">2024 — 2026</div>
+      <div>
+        <div class="exp-role">National-Level Competitor</div>
+        <div class="exp-org">Stock Pitching and Finance Quiz Competitions</div>
+        <ul class="exp-list">
+          <li>Participated in National Level Capital Market Quiz, hosted by SEBON (2025 &amp; 2026 editions)</li>
+          <li>Competed in NSPC 2026, provincial round, hosted by Stock Brokers' Association of Nepal</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-item rv" style="transition-delay:.25s">
+      <div class="exp-date">Jun 2026</div>
+      <div>
+        <div class="exp-role">Event Manager</div>
+        <div class="exp-org">Parliamentary Simulation of Budget Speech and Q&amp;A, Valley State College</div>
+        <ul class="exp-list">
+          <li>Served as Event Manager for the full simulation programme</li>
+          <li>Role-played the Leader of the Parliamentary Party of Shram Sanskriti Party</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-item rv" style="transition-delay:.3s">
+      <div class="exp-date">2026</div>
+      <div>
+        <div class="exp-role">Program Coordinator</div>
+        <div class="exp-org">Welcome and Farewell Program, CBC Lords Plaza, Valley State College</div>
+        <ul class="exp-list">
+          <li>Coordinated event planning, logistics, communication, and execution</li>
+          <li>Managed and motivated team members to ensure successful delivery</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"><hr></div>
+
+<!-- CERTIFICATES -->
+<section class="section" id="certificates">
+  <div class="wrap">
+    <div class="section-head rv">
+      <span class="section-label">Certificates</span>
+      <h2 class="section-title">Achievements &amp; <em>Awards</em></h2>
+      <p class="section-sub">14 verified entries. Click any card to view the full certificate.</p>
+    </div>
+
+    <div class="cert-filter rv">
+      <button class="chip active" data-filter="all">All</button>
+      <button class="chip" data-filter="finance">Finance</button>
+      <button class="chip" data-filter="college">College</button>
+      <button class="chip" data-filter="sports">Sports</button>
+      <button class="chip" data-filter="other">Other</button>
+    </div>
+
+    <div class="cert-grid" id="certGrid">
+
+      <div class="cc rv" style="transition-delay:.05s" data-filter="college" data-img="assets/01-vmep-2024.jpeg" data-type="College Recognition" data-title="Certificate of Recognition — V-MEP" data-issuer="Valley State's Marketing Experiment Project, Team 'The Elite'" data-date="28 June 2024">
+        <span class="cc-tag">College Recognition</span>
+        <h4 class="cc-title">Certificate of Recognition — V-MEP</h4>
+        <p class="cc-org">Valley State's Marketing Experiment Project · Team "The Elite", BBA 4th Semester</p>
+        <span class="cc-date">28 June 2024</span>
+        <button class="cc-view">View Certificate →</button>
+      </div>
+
+      <div class="cc rv" style="transition-delay:.1s" data-filter="sports" data-img="assets/02-vsports-futsal-2024.jpeg" data-type="Sports" data-title="Futsal, 1st Position" data-issuer="V-Sports 2024, Sports Club of Valley State College" data-date="22 November 2024">
+        <span class="cc-tag">Sports</span>
+        <h4 class="cc-title">Futsal, 1st Position</h4>
+        <p class="cc-org">V-Sports 2024, BBA Fifth Semester · Sports Club of Valley State College</p>
+        <span class="cc-date">22 November 2024</span>
+        <button class="cc-view">View Certificate →</button>
+      </div>
+
+      <div class="cc rv" style="transition-delay:.15s" data-filter="finance" data-img="assets/03-peer-mentoring-2025.jpeg" data-type="Finance" data-title="Certificate of Recognition — Trainer" data-issuer="Peer Mentoring Session, Nepali Share Market Workshop" data-date="1 March 2025">
+        <span class="cc-tag">Finance</span>
+        <h4 class="cc-title">Certificate of Recognition — Trainer</h4>
+        <p class="cc-org">Peer Mentoring Session, Nepali Share Market Workshop · Valley State College</p>
+        <span class="cc-date">1 March 2025</span>
+        <button class="cc-view">View Certificate →</button>
+      </div>
+
+      <div class="cc rv" style="transition-delay:.2s" data-filter="finance" data-img="assets/04-capital-market-quiz-2025.jpeg" data-type="Finance" data-title="National Level Capital Market Quiz 2025" data-issuer="Global Money Week · SEBON, MBAN, Stock Brokers' Association" data-date="Chaitra 2081 B.S.">
+        <span class="cc-tag">Finance</span>
+        <h4 class="cc-title">National Level Capital Market Quiz 2025</h4>
+        <p class="cc-org">Global Money Week · hosted by Presidency College, with SEBON, MBAN, Stock Brokers' Association</p>
+        <span class="cc-date">Chaitra 2081 B.S.</span>
+        <button class="cc-view">View Certificate →</button>
+      </div>
+
+      <div class="cc rv" style="transition-delay:.25s" data-filter="finance" data-img="assets/05-sani-internship-2025.jpeg" data-type="Finance" data-title="Internship Certificate — Sani Securities" data-issuer="Sani Securities Company Ltd., Stock Broker No. 42" data-date="Aug – Nov 2025">
+        <span class="cc-tag">Finance</span>
+        <h4 class="cc-title">Internship Certificate</h4>
+        <p class="cc-org">Sani Securities Company Ltd., Stock Broker No. 42 · Customer Service, Accounting and Trading Dept.</p>
+        <span class="cc-date">Aug – Nov 2025</span>
+        <button class="cc-view">View Certificate →</button>
+      </div>
+
+      <div class="cc rv" style="transition-delay:.3s" data-filter="other" data-img="assets/06-intl-conference-2025.jpeg" data-type="Research" data-title="Certificate of Presentation — International Conference" data-issuer="St. Paul Institute of Professional Studies, Indore" data-date="15 October 2025">
+        <span class="cc-tag">Research</span>
+        <h4 class="cc-title">Certificate of Presentation — International Conference</h4>
+        <p class="cc-org">"Examining the Relations of Global Macroeconomic Indicators with Nepal Stock Exchange"</p>
+        <span class="cc-date">15 October 2025</span>
+        <button class="cc-view">View Certificate →</button>
+      </div>
+
+      <div class="cc rv" data-filter="finance" data-img="assets/07-nspc-2026.jpeg" data-type="Finance" data-title="NSPC 2026" data-issuer="Stock Brokers' Association of Nepal and KUSOM Finance Club" data-date="2026">
+        <span class="cc-tag">Finance</span>
+        <h4 class="cc-title">National Stock Pitching Competition (NSPC) 2026</h4>
+        <p class="cc-org">Stock Brokers' Association of Nepal and KUSOM Finance Club · Provincial Round</p>
+        <span class="cc-date">2026</span>
+        <button class="cc-view">View Certificate →</button>
+      </div>
+
+      <div class="cc rv" data-filter="finance" data-img="assets/08-capital-market-quiz-2026.jpeg" data-type="Finance" data-title="National Level Capital Market Quiz 2026" data-issuer="Global Money Week · NEPSE, CDS and Clearing Ltd." data-date="20 – 21 March 2026">
+        <span class="cc-tag">Finance</span>
+        <h4 class="cc-title">National Level Capital Market Quiz 2026</h4>
+        <p class="cc-org">Global Money Week · Nepal Tourism and Hotel Management College, SEBON, NEPSE, CDS</p>
+        <span class="cc-date">20 – 21 March 2026</span>
+        <button class="cc-view">View Certificate →</button>
+      </div>
+
+      <div class="cc rv" data-filter="finance" data-img="assets/09-publication-2026.jpeg" data-type="Research" data-title="Publication Certificate — HJMR" data-issuer="Himalayan Journal of Multidisciplinary Research" data-date="5 May 2026">
+        <span class="cc-tag">Research</span>
+        <h4 class="cc-title">Publication Certificate</h4>
+        <p class="cc-org">"Global Macroeconomic Forces and Stock Market Performance" · Himalayan Journal of Multidisciplinary Research</p>
+        <span class="cc-date">5 May 2026</span>
+        <button class="cc-view">View Certificate →</button>
+      </div>
+
+      <div class="cc rv" data-filter="college" data-img="assets/10-event-manager-2026.jpeg" data-type="College Recognition" data-title="Certificate of Recognition — Event Manager" data-issuer="Parliamentary Simulation, Valley State College" data-date="16 June 2026">
+        <span class="cc-tag">College Recognition</span>
+        <h4 class="cc-title">Certificate of Recognition — Event Manager</h4>
+        <p class="cc-org">Parliamentary Simulation of Budget Speech and Q&A Session</p>
+        <span class="cc-date">16 June 2026</span>
+        <button class="cc-view">View Certificate →</button>
+      </div>
+
+      <div class="cc rv" data-filter="college" data-img="assets/11-roleplay-2026.jpeg" data-type="College Recognition" data-title="Certificate of Recognition — Role Play" data-issuer="Leader of Parliamentary Party of Shram Sanskriti Party" data-date="16 June 2026">
+        <span class="cc-tag">College Recognition</span>
+        <h4 class="cc-title">Certificate of Recognition — Role Play</h4>
+        <p class="cc-org">Leader of the Parliamentary Party of Shram Sanskriti Party</p>
+        <span class="cc-date">16 June 2026</span>
+        <button class="cc-view">View Certificate →</button>
+      </div>
+
+      <div class="cc rv" data-filter="sports" data-img="assets/12-futsal-2nd-2026.jpeg" data-type="Sports" data-title="Futsal, 2nd Position" data-issuer="Intra-College Futsal Tournament 2026, Sports Club of Valley State College" data-date="26 June 2026">
+        <span class="cc-tag">Sports</span>
+        <h4 class="cc-title">Futsal, 2nd Position</h4>
+        <p class="cc-org">Intra-College Futsal Tournament 2026, BBA 8th Semester</p>
+        <span class="cc-date">26 June 2026</span>
+        <button class="cc-view">View Certificate →</button>
+      </div>
+
+      <div class="cc rv" data-filter="college" data-img="assets/13-welcome-farewell-2026.jpeg" data-type="College Recognition" data-title="Event Coordinator" data-issuer="Welcome and Farewell Program, CBC Lords Plaza" data-date="28 Ashar 2083 B.S.">
+        <span class="cc-tag">College Recognition</span>
+        <h4 class="cc-title">Certificate of Appreciation — Event Coordinator</h4>
+        <p class="cc-org">Welcome and Farewell Program, held at CBC Lords Plaza</p>
+        <span class="cc-date">28 Ashar 2083 B.S.</span>
+        <button class="cc-view">View Certificate →</button>
+      </div>
+
+      <div class="cc rv" data-filter="other" data-img="assets/14-yamaha-safe-riding.jpeg" data-type="Other" data-title="Yamaha Safe Riding Science" data-issuer="M.A.W. Rides Pvt. Ltd." data-date="Undated">
+        <span class="cc-tag">Other</span>
+        <h4 class="cc-title">Yamaha Safe Riding Science</h4>
+        <p class="cc-org">Scientific skills for safe motorcycle riding · Organized by M.A.W. Rides Pvt. Ltd.</p>
+        <span class="cc-date">Undated</span>
+        <button class="cc-view">View Certificate →</button>
+      </div>
+
+    </div>
+
+    <div class="lb" id="lightbox">
+      <button class="lb-x" id="lbClose">&times;</button>
+      <img id="lbImg" src="" alt="Certificate">
+      <div class="lb-cap">
+        <span class="lb-type" id="lbType"></span>
+        <h3 class="lb-title" id="lbTitle"></h3>
+        <p class="lb-issuer" id="lbIssuer"></p>
+        <p class="lb-date" id="lbDate"></p>
+      </div>
+      <div class="lb-nav">
+        <button class="lb-p" id="lbPrev">&#10094;</button>
+        <button class="lb-n" id="lbNext">&#10095;</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"><hr></div>
+
+<!-- PUBLICATIONS -->
+<section class="section" id="publications">
+  <div class="wrap">
+    <div class="section-head rv">
+      <span class="section-label">Publications</span>
+      <h2 class="section-title">Research &amp; <em>Writing</em></h2>
+    </div>
+    <div class="pub-grid">
+      <article class="pub-card rv" style="transition-delay:.05s">
+        <span class="pub-label">Research Paper</span>
+        <h3 class="pub-title">Global Macroeconomic Forces and Stock Market Performance: Evidence from a Developing Economy</h3>
+        <p class="pub-author">Author: Bhuwan Kandel</p>
+        <p class="pub-desc">Published in <em>Himalayan Journal of Multidisciplinary Research (HJMR)</em>, May 2026. Presented at an international conference in Indore, India.</p>
+      </article>
+      <article class="pub-card rv" style="transition-delay:.1s">
+        <span class="pub-label">Article</span>
+        <h3 class="pub-title">From Campus to Capital Market: My Internship Journey at Sani Securities Company Ltd.</h3>
+        <p class="pub-author">Author: Bhuwan Kandel</p>
+        <p class="pub-desc">Published in <em>V-Smile Magazine / Journal</em>, ISSN: 3102-0461, 2025.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<div class="divider"><hr></div>
+
+<!-- EDUCATION -->
+<section class="section" id="education">
+  <div class="wrap">
+    <div class="section-head rv">
+      <span class="section-label">Education</span>
+      <h2 class="section-title">Academic <em>Record</em></h2>
+    </div>
+    <div class="edu-grid">
+      <div class="edu-card rv" style="transition-delay:.05s">
+        <span class="edu-period">2022 – 2026 (Expected)</span>
+        <h3 class="edu-degree">Bachelor of <em>Business Administration</em></h3>
+        <p class="edu-school">Valley State College, Chitwan, Bharatpur<br>Affiliated with Pokhara University · BBA Scholar, 8th Semester</p>
+      </div>
+      <div class="edu-card rv" style="transition-delay:.1s">
+        <span class="edu-period">Completed 2021</span>
+        <h3 class="edu-degree">Higher Secondary <em>Education (+2)</em></h3>
+        <p class="edu-school">Daisy English Boarding Secondary School<br>GPA: 3.47 / 4.0</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"><hr></div>
+
+<!-- SKILLS -->
+<section class="section" id="skills">
+  <div class="wrap">
+    <div class="section-head rv">
+      <span class="section-label">Skills</span>
+      <h2 class="section-title">What I <em>Know</em></h2>
+    </div>
+    <div class="skills-row">
+      <div class="rv" style="transition-delay:.05s">
+        <h4 class="sk-title">Soft Skills</h4>
+        <div class="sk-tags">
+          <span class="sk-tag">Project Management</span>
+          <span class="sk-tag">Public Relations</span>
+          <span class="sk-tag">Teamwork</span>
+          <span class="sk-tag">Time Management</span>
+          <span class="sk-tag">Leadership</span>
+          <span class="sk-tag">Communication</span>
+          <span class="sk-tag">Critical Thinking</span>
+          <span class="sk-tag">Presentation Skills</span>
+          <span class="sk-tag">Digital Marketing</span>
+        </div>
+      </div>
+      <div class="rv" style="transition-delay:.1s">
+        <h4 class="sk-title">Technical Skills</h4>
+        <div class="sk-tags">
+          <span class="sk-tag">SPSS</span>
+          <span class="sk-tag">JAMOVI</span>
+          <span class="sk-tag">Microsoft Excel</span>
+          <span class="sk-tag">Microsoft Word</span>
+          <span class="sk-tag">PowerPoint</span>
+          <span class="sk-tag">Research & Data Analysis</span>
+        </div>
+      </div>
+    </div>
+    <div style="margin-top:2.5rem">
+      <h4 class="sk-title rv">Languages</h4>
+      <div class="lang-row rv"><span class="lang-name">English</span><span class="lang-level">Fluent</span></div>
+      <div class="lang-row rv"><span class="lang-name">Nepali</span><span class="lang-level">Native</span></div>
+      <div class="lang-row rv"><span class="lang-name">Hindi</span><span class="lang-level">Fluent</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"><hr></div>
+
+<!-- CONTACT -->
+<section class="section" id="contact">
+  <div class="wrap">
+    <div class="section-head rv">
+      <span class="section-label">Contact</span>
+      <h2 class="section-title">Get in <em>Touch</em></h2>
+    </div>
+    <div class="contact-row rv">
+      <div class="ct-block"><p class="ct-label">Phone</p><a href="tel:9848515544" class="ct-val">9848515544</a></div>
+      <div class="ct-block"><p class="ct-label">Email</p><a href="mailto:kandelbhuwan9845@gmail.com" class="ct-val">kandelbhuwan9845@gmail.com</a></div>
+      <div class="ct-block"><p class="ct-label">Address</p><span class="ct-val">Khairahani-9, Bharatpur, Chitwan, Nepal</span></div>
+      <div class="ct-block"><p class="ct-label">College</p><span class="ct-val">Valley State College, Chitwan</span></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <span class="footer-text">&copy; 2026 <strong>Bhuwan Kandel</strong></span>
+    <span class="footer-text">Bharatpur, Chitwan · Nepal</span>
+  </div>
+</footer>
+
+<script>
+var io=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting){x.target.classList.add('on');io.unobserve(x.target)}})},{threshold:.08,rootMargin:'0px 0px -25px 0px'});
+document.querySelectorAll('.rv').forEach(function(el){io.observe(el)});
+
+var chips=document.querySelectorAll('.chip'),cards=document.querySelectorAll('.cc');
+chips.forEach(function(c){c.addEventListener('click',function(){chips.forEach(function(x){x.classList.remove('active')});c.classList.add('active');var f=c.dataset.filter;cards.forEach(function(x){x.style.display=(f==='all'||x.dataset.filter===f)?'flex':'none'})})});
+
+var lb=document.getElementById('lightbox'),lbImg=document.getElementById('lbImg'),lbType=document.getElementById('lbType'),lbTitle=document.getElementById('lbTitle'),lbIssuer=document.getElementById('lbIssuer'),lbDate=document.getElementById('lbDate'),vc=[],ci=0;
+function getV(){var a=[];cards.forEach(function(c){if(c.style.display!=='none')a.push(c)});return a}
+function openLB(c,i){vc=getV();ci=i;var d=c.dataset;lbImg.src=d.img;lbType.textContent=d.type||'';lbTitle.textContent=d.title||'';lbIssuer.textContent=d.issuer||'';lbDate.textContent=d.date||'';lb.classList.add('active');document.body.style.overflow='hidden'}
+function closeLB(){lb.classList.remove('active');document.body.style.overflow=''}
+cards.forEach(function(c){c.addEventListener('click',function(){openLB(c,getV().indexOf(c))})});
+document.getElementById('lbClose').addEventListener('click',closeLB);
+lb.addEventListener('click',function(e){if(e.target===lb)closeLB()});
+document.getElementById('lbPrev').addEventListener('click',function(e){e.stopPropagation();ci=(ci-1+vc.length)%vc.length;openLB(vc[ci],ci)});
+document.getElementById('lbNext').addEventListener('click',function(e){e.stopPropagation();ci=(ci+1)%vc.length;openLB(vc[ci],ci)});
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeLB();if(lb.classList.contains('active')){if(e.key==='ArrowLeft'){ci=(ci-1+vc.length)%vc.length;openLB(vc[ci],ci)}if(e.key==='ArrowRight'){ci=(ci+1)%vc.length;openLB(vc[ci],ci)}}});
+</script>
+</body>
+</html>

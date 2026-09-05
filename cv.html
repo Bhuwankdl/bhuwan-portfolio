@@ -68,7 +68,12 @@
   @keyframes ppFloat{ 0%,100%{transform:translateY(0);} 50%{transform:translateY(-5px);} }
   @keyframes ppPulse{ 0%,100%{opacity:.55; transform:scale(1);} 50%{opacity:1; transform:scale(1.05);} }
   @keyframes taglineGrow{ to{width:96px;} }
-  section{margin-top:16px; page-break-inside:avoid;}
+  section{margin-top:16px;}
+  .edu-row, .xp, .ref-card, .sec-title{page-break-inside:avoid;}
+  ul.hl{list-style:none; padding:0; display:grid; grid-template-columns:1fr 1fr; gap:6px 26px;}
+  ul.hl li{font-size:12.5px; color:#2A3442; padding:4px 0 4px 20px; position:relative;}
+  ul.hl li::before{content:"\2605"; position:absolute; left:0; top:4px; color:var(--brass); font-size:11px;}
+  ul.hl li b{font-weight:600; color:var(--ink);}
   .sec-title{
     font-family:var(--mono); font-size:11.5px; letter-spacing:.12em; color:var(--accent);
     border-bottom:1px solid var(--line); padding-bottom:6px; margin-bottom:10px;
@@ -163,6 +168,18 @@
       </div>
       <div class="meta">COMPLETED 2021</div>
     </div>
+  </section>
+
+  <section>
+    <div class="sec-title">KEY QUALIFICATIONS</div>
+    <ul class="hl">
+      <li><b>3+ years</b> of hands-on share market experience, including NEPSE trend analysis.</li>
+      <li>Completed brokerage internship at <b>Sani Securities</b> (Stock Broker No. 42, SEBON-licensed).</li>
+      <li>Published researcher in <b>HJMR</b> and presenter at an international conference in Indore, India.</li>
+      <li>National-level competitor — Capital Market Quiz (SEBON) and NSPC 2026 stock pitching (provincial round).</li>
+      <li>Leadership across peer mentoring, event management, and programme coordination.</li>
+      <li>Data analysis with <b>SPSS, JAMOVI, and Excel</b> applied to finance research.</li>
+    </ul>
   </section>
 
   <section>

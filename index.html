@@ -4,566 +4,772 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Bhuwan Kandel — Portfolio</title>
+<meta name="description" content="Portfolio of Bhuwan Kandel — BBA Scholar, capital markets enthusiast, and published researcher from Chitwan, Nepal.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root{
-    --ink:#0A1C30;
-    --ink-2:#0E2944;
-    --ink-3:#153D5B;
-    --parchment:#FAF5EB;
-    --parchment-2:#F1E9D5;
-    --brass:#C3921F;
-    --brass-light:#E7BE5C;
-    --accent:#14705A;
-    --accent-soft:rgba(20,112,90,0.08);
-    --line:rgba(250,245,235,0.14);
-    --line-strong:rgba(250,245,235,0.3);
-    --ink-text:#1A2432;
-    --ink-muted:#596272;
-    --paper-line:rgba(10,28,48,0.12);
-    --serif:'Source Serif 4', Georgia, serif;
+    --bg:#070B16;
+    --bg-2:#0B1220;
+    --surface:rgba(255,255,255,0.04);
+    --surface-2:rgba(255,255,255,0.07);
+    --line:rgba(255,255,255,0.1);
+    --line-strong:rgba(255,255,255,0.18);
+    --text:#E7ECF5;
+    --muted:#96A3B8;
+    --faint:rgba(151,163,184,0.55);
+    --cyan:#22D3EE;
+    --violet:#8B5CF6;
+    --fuchsia:#E879F9;
+    --gold:#F2B33D;
+    --gold-soft:rgba(242,179,61,0.14);
+    --grad:linear-gradient(120deg, var(--cyan), var(--violet) 55%, var(--fuchsia));
+    --grad-gold:linear-gradient(120deg, #F2B33D, #F77B5B);
     --sans:'Inter', -apple-system, sans-serif;
+    --disp:'Sora', 'Inter', sans-serif;
     --mono:'JetBrains Mono', monospace;
+    --shadow:0 24px 60px -30px rgba(0,0,0,0.55);
   }
   *{box-sizing:border-box; margin:0; padding:0;}
-  html{scroll-behavior:smooth; scroll-padding-top:84px;}
+  html{scroll-behavior:smooth; scroll-padding-top:92px;}
   body{
     font-family:var(--sans);
-    background:var(--parchment);
-    color:var(--ink-text);
+    background:var(--bg);
+    color:var(--text);
     line-height:1.6;
     -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  body::before{
+    content:""; position:fixed; inset:0; z-index:-2;
+    background:
+      radial-gradient(900px 600px at 12% -8%, rgba(34,211,238,0.12), transparent 60%),
+      radial-gradient(900px 600px at 88% 6%, rgba(139,92,246,0.14), transparent 60%),
+      radial-gradient(1000px 700px at 50% 120%, rgba(232,121,249,0.08), transparent 60%),
+      var(--bg);
+  }
+  body::after{
+    content:""; position:fixed; inset:0; z-index:-1; pointer-events:none;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+    background-size:64px 64px;
+    mask-image:radial-gradient(circle at 50% 30%, black, transparent 78%);
+    -webkit-mask-image:radial-gradient(circle at 50% 30%, black, transparent 78%);
   }
   img{max-width:100%; display:block;}
   a{color:inherit;}
-  ::selection{ background:var(--brass); color:var(--ink); }
+  button{font-family:inherit;}
+  ::selection{ background:var(--violet); color:#fff; }
 
-  .reveal-init{
-    opacity:0; transform:translateY(26px);
-    transition:opacity .7s cubic-bezier(.22,.61,.36,1), transform .7s cubic-bezier(.22,.61,.36,1),
-      background-color .3s, border-color .3s, box-shadow .3s;
+  .wrap{max-width:1140px; margin:0 auto; padding:0 28px;}
+  .grad-text{
+    background:var(--grad);
+    -webkit-background-clip:text; background-clip:text;
+    -webkit-text-fill-color:transparent; color:transparent;
+  }
+  .gold-text{
+    background:var(--grad-gold);
+    -webkit-background-clip:text; background-clip:text;
+    -webkit-text-fill-color:transparent; color:transparent;
+  }
+
+  /* Cursor glow */
+  .cursor-glow{
+    position:fixed; top:0; left:0; width:480px; height:480px; z-index:1;
+    pointer-events:none; border-radius:50%;
+    background:radial-gradient(circle, rgba(139,92,246,0.13), transparent 65%);
+    transform:translate(-50%,-50%);
+    transition:opacity .4s;
+  }
+
+  /* ============ REVEAL ============ */
+  .reveal{
+    opacity:0; transform:translateY(34px);
+    transition:opacity .8s cubic-bezier(.16,.6,.3,1), transform .8s cubic-bezier(.16,.6,.3,1);
     will-change:opacity, transform;
   }
-  .reveal-init.in-view{ opacity:1; transform:none; }
+  .reveal.in-view{opacity:1; transform:none;}
+  .reveal[data-delay="1"]{transition-delay:.07s;}
+  .reveal[data-delay="2"]{transition-delay:.14s;}
+  .reveal[data-delay="3"]{transition-delay:.21s;}
+  .reveal[data-delay="4"]{transition-delay:.28s;}
+  .reveal[data-delay="5"]{transition-delay:.35s;}
 
-  @keyframes riseIn{ from{opacity:0; transform:translateY(26px);} to{opacity:1; transform:none;} }
-  @keyframes floaty{ 0%,100%{ transform:translateY(0);} 50%{ transform:translateY(-12px);} }
-  @keyframes heroDrift{ 0%,100%{ transform:translate3d(0,0,0) rotate(0deg);} 50%{ transform:translate3d(3%,2%,0) rotate(.5deg);} }
-
-  .wrap{max-width:1120px; margin:0 auto; padding:0 32px;}
+  @keyframes riseIn{ from{opacity:0; transform:translateY(30px);} to{opacity:1; transform:none;} }
+  @keyframes fadeIn{ from{opacity:0;} to{opacity:1;} }
+  @keyframes floaty{ 0%,100%{ transform:translateY(0) } 50%{ transform:translateY(-14px) } }
+  @keyframes spinSlow{ to{ transform:rotate(360deg) } }
+  @keyframes orbA{ 0%,100%{ transform:translate(0,0) scale(1);} 33%{ transform:translate(40px,-30px) scale(1.1);} 66%{ transform:translate(-25px,20px) scale(.95);} }
+  @keyframes orbB{ 0%,100%{ transform:translate(0,0) scale(1);} 33%{ transform:translate(-35px,25px) scale(.9);} 66%{ transform:translate(30px,-20px) scale(1.12);} }
+  @keyframes marquee{ from{ transform:translateX(0);} to{ transform:translateX(-50%);} }
+  @keyframes blink{ 0%,100%{opacity:1;} 50%{opacity:.25;} }
+  @keyframes shimmer{ from{ background-position:200% 0;} to{ background-position:-200% 0;} }
 
   /* ============ NAV ============ */
   header.site-nav{
-    position:sticky; top:0; z-index:100;
-    background:var(--ink);
-    border-bottom:1px solid var(--line);
+    position:fixed; top:0; left:0; right:0; z-index:200;
+    transition:background .35s, border-color .35s, backdrop-filter .35s;
+    border-bottom:1px solid transparent;
+  }
+  header.site-nav.scrolled{
+    background:rgba(7,11,22,0.7);
+    -webkit-backdrop-filter:blur(16px); backdrop-filter:blur(16px);
+    border-bottom-color:var(--line);
   }
   .nav-inner{
     display:flex; align-items:center; justify-content:space-between;
-    padding:18px 32px; max-width:1120px; margin:0 auto;
+    padding:18px 28px; max-width:1140px; margin:0 auto;
   }
   .nav-mark{
-    font-family:var(--serif); color:var(--parchment); font-size:19px; font-weight:600;
+    font-family:var(--disp); font-weight:700; font-size:18px; letter-spacing:0.01em;
+    display:flex; align-items:center; gap:10px;
+  }
+  .nav-mark .logo-dot{
+    width:10px; height:10px; border-radius:50%;
+    background:var(--grad); box-shadow:0 0 14px rgba(139,92,246,0.8);
+    animation:blink 3s ease-in-out infinite;
+  }
+  nav.nav-links{display:flex; gap:26px; align-items:center;}
+  nav.nav-links a{
+    font-size:13px; color:var(--muted); text-decoration:none;
+    position:relative; padding:4px 0; transition:color .2s;
     letter-spacing:0.01em;
   }
-  .nav-mark span{color:var(--brass);}
-  nav.nav-links{display:flex; gap:30px;}
-  nav.nav-links a{
-    font-size:13px; color:rgba(246,241,230,0.72); text-decoration:none;
-    letter-spacing:0.02em; transition:color .15s;
-    position:relative; padding-bottom:4px;
-  }
   nav.nav-links a::after{
-    content:""; position:absolute; left:0; bottom:0; width:0; height:2px;
-    background:var(--brass-light); transition:width .25s;
+    content:""; position:absolute; left:0; bottom:-2px; height:2px; width:0;
+    background:var(--grad); border-radius:2px; transition:width .3s ease;
   }
-  nav.nav-links a:hover{color:var(--brass-light);}
+  nav.nav-links a:hover{color:var(--text);}
   nav.nav-links a:hover::after{width:100%;}
-  .nav-toggle{display:none; background:none; border:none; color:var(--parchment); font-size:24px; cursor:pointer;}
+  nav.nav-links .btn{padding:9px 18px;}
+  .nav-toggle{display:none; background:none; border:none; color:var(--text); font-size:26px; cursor:pointer; line-height:1;}
 
-  /* ============ HERO ============ */
-  .hero{
-    background:var(--ink);
-    color:var(--parchment);
-    position:relative;
-    overflow:hidden;
-    border-bottom:1px solid var(--line);
-  }
-  .hero::before{
-    content:"";
-    position:absolute; inset:0;
-    background-image:
-      repeating-linear-gradient(90deg, rgba(246,241,230,0.035) 0px, rgba(246,241,230,0.035) 1px, transparent 1px, transparent 120px);
-    pointer-events:none;
-  }
-  .hero::after{
-    content:"";
-    position:absolute; inset:0;
-    background:radial-gradient(1100px 460px at 78% 16%, rgba(231,190,92,0.12), transparent 62%);
-    pointer-events:none;
-    animation:heroDrift 14s ease-in-out infinite;
-  }
-  .hero-inner{
-    position:relative;
-    display:grid;
-    grid-template-columns:1.35fr 0.9fr;
-    gap:56px;
-    padding:88px 32px 64px;
-    max-width:1120px; margin:0 auto;
-    align-items:center;
-  }
-  .eyebrow-line{
-    display:flex; align-items:center; gap:10px;
-    font-family:var(--mono); font-size:12px; letter-spacing:0.06em;
-    color:var(--brass-light); margin-bottom:22px;
-  }
-  .eyebrow-line::before{content:""; width:24px; height:1px; background:var(--brass);}
-  h1.hero-name{
-    font-family:var(--serif); font-weight:600;
-    font-size:clamp(40px, 5.4vw, 66px);
-    line-height:1.04;
-    letter-spacing:-0.01em;
-    margin-bottom:18px;
-    animation:riseIn .9s .08s cubic-bezier(.22,.61,.36,1) both;
-  }
-  .hero-role{
-    font-size:18px; color:rgba(246,241,230,0.82);
-    max-width:46ch;
-    margin-bottom:30px;
-    animation:riseIn .9s .2s cubic-bezier(.22,.61,.36,1) both;
-  }
-  .hero-role strong{color:var(--brass-light); font-weight:500;}
-  .hero-cta{display:flex; gap:14px; flex-wrap:wrap; animation:riseIn .9s .32s cubic-bezier(.22,.61,.36,1) both;}
+  /* ============ BUTTONS ============ */
   .btn{
     display:inline-flex; align-items:center; gap:8px;
-    padding:13px 24px; font-size:14px; font-weight:500;
-    text-decoration:none; border-radius:2px;
-    transition:transform .18s, box-shadow .18s, background .18s, border-color .18s, color .18s;
-    cursor:pointer; border:1px solid transparent;
-    font-family:var(--sans);
-    position:relative; overflow:hidden;
+    padding:12px 22px; font-size:13.5px; font-weight:500;
+    text-decoration:none; border-radius:12px; cursor:pointer;
+    border:1px solid transparent; transition:transform .2s, box-shadow .2s, background .2s, border-color .2s, color .2s;
+    white-space:nowrap;
   }
   .btn:hover{transform:translateY(-2px);}
-  .btn:active{transform:translateY(0);}
-  .btn-primary{background:var(--brass); color:var(--ink); box-shadow:0 6px 18px -10px rgba(195,146,31,.9);}
-  .btn-primary:hover{background:var(--brass-light); box-shadow:0 10px 26px -12px rgba(231,190,92,.95);}
-  .btn-primary::after{
-    content:""; position:absolute; top:0; left:-130%; width:55%; height:100%;
-    background:linear-gradient(90deg, transparent, rgba(255,255,255,.4), transparent);
-    transform:skewX(-20deg); transition:left .55s ease;
-  }
-  .btn-primary:hover::after{left:150%;}
-  .btn-ghost{border-color:var(--line-strong); color:var(--parchment);}
-  .btn-ghost:hover{border-color:var(--brass); color:var(--brass-light);}
+  .btn:active{transform:translateY(0) scale(.98);}
+  .btn-primary{background:var(--grad); color:#fff; box-shadow:0 10px 30px -12px rgba(139,92,246,0.75); background-size:150% 150%;}
+  .btn-primary:hover{box-shadow:0 16px 40px -14px rgba(217,70,239,0.85); animation:shimmer 2.2s linear infinite;}
+  .btn-ghost{border-color:var(--line-strong); color:var(--text); background:rgba(255,255,255,0.02);}
+  .btn-ghost:hover{border-color:var(--violet); color:#fff;}
+  .btn-gold{background:var(--grad-gold); color:#1A1204; box-shadow:0 10px 30px -14px rgba(242,179,61,0.7);}
+  .btn-gold:hover{box-shadow:0 16px 40px -16px rgba(242,179,61,0.9);}
 
-  .hero-portrait{
-    position:relative;
-    justify-self:center;
+  /* ============ HERO ============ */
+  .site-nav + .hero{padding-top:150px;}
+  .hero{position:relative; overflow:hidden; padding-bottom:0;}
+  .hero-orbs{z-index:-1; position:absolute; inset:0; overflow:hidden;}
+  .orb{
+    position:absolute; border-radius:50%; filter:blur(70px); opacity:0.5;
   }
-  .portrait-ring{
-    width:260px; height:260px; border-radius:50%;
-    border:1px solid var(--line-strong);
-    padding:14px;
-    position:relative;
-    animation:floaty 6s .9s ease-in-out infinite;
+  .orb.a{width:420px; height:420px; background:#1D4ED8; top:-120px; left:-80px; animation:orbA 16s ease-in-out infinite;}
+  .orb.b{width:380px; height:380px; background:#7C3AED; top:10%; right:-120px; animation:orbB 19s ease-in-out infinite;}
+  .orb.c{width:300px; height:300px; background:#0891B2; bottom:8%; left:28%; animation:orbA 22s ease-in-out infinite;}
+  .hero-inner{
+    display:grid; grid-template-columns:1.35fr 0.8fr; gap:48px;
+    padding:56px 0 72px; align-items:center; position:relative;
   }
-  .portrait-ring img{
-    width:100%; height:100%; border-radius:50%; object-fit:cover;
-    border:2px solid var(--brass);
+  .eyebrow-line{
+    display:inline-flex; align-items:center; gap:10px;
+    font-family:var(--mono); font-size:11.5px; letter-spacing:0.12em;
+    color:var(--gold); margin-bottom:24px;
+    background:var(--gold-soft); border:1px solid rgba(242,179,61,0.25);
+    padding:7px 14px; border-radius:999px; text-transform:uppercase;
+    animation:fadeIn 1s .1s both;
   }
-  .portrait-tag{
-    position:absolute; bottom:-6px; left:50%; transform:translateX(-50%);
-    background:var(--brass); color:var(--ink);
-    font-family:var(--mono); font-size:11px; letter-spacing:0.04em;
-    padding:6px 16px; white-space:nowrap;
+  h1.hero-name{
+    font-family:var(--disp); font-weight:800;
+    font-size:clamp(42px, 6vw, 74px);
+    line-height:1.04; letter-spacing:-0.02em;
+    margin-bottom:22px; animation:riseIn .9s .15s cubic-bezier(.16,.6,.3,1) both;
   }
+  .hero-name .block{display:block;}
+  .hero-role{
+    font-size:17.5px; color:var(--muted); max-width:52ch;
+    margin-bottom:34px; animation:riseIn .9s .28s cubic-bezier(.16,.6,.3,1) both;
+  }
+  .hero-role strong{color:var(--text); font-weight:600;}
+  .hero-cta{display:flex; gap:14px; flex-wrap:wrap; animation:riseIn .9s .4s cubic-bezier(.16,.6,.3,1) both;}
 
-  .ticker{
-    background:var(--ink-2);
-    border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+  .hero-portrait{position:relative; justify-self:center; animation:fadeIn 1.2s .3s both;}
+  .portrait-halo{
+    width:300px; height:300px; position:relative;
+    display:grid; place-items:center;
   }
-  .ticker-inner{
-    max-width:1120px; margin:0 auto; padding:0 32px;
+  .portrait-halo .ring{
+    position:absolute; inset:0; border-radius:50%;
+    border:1px dashed rgba(139,92,246,0.4);
+    animation:spinSlow 26s linear infinite;
+  }
+  .portrait-halo .ring.two{
+    inset:26px; border-color:rgba(34,211,238,0.3);
+    animation-direction:reverse; animation-duration:19s;
+  }
+  .portrait-halo .glow{
+    position:absolute; inset:-20px; border-radius:50%;
+    background:radial-gradient(circle, rgba(139,92,246,0.35), transparent 65%);
+    filter:blur(30px);
+  }
+  .portrait-halo img{
+    position:relative; width:200px; height:200px; border-radius:28px;
+    object-fit:cover; border:2px solid var(--line-strong);
+    box-shadow:0 30px 60px -25px rgba(0,0,0,0.7);
+    animation:floaty 6s ease-in-out infinite;
+  }
+  .float-chip{
+    position:absolute; z-index:3;
+    font-family:var(--mono); font-size:11px; letter-spacing:0.03em;
+    background:rgba(13,18,34,0.85); border:1px solid var(--line-strong);
+    -webkit-backdrop-filter:blur(8px); backdrop-filter:blur(8px);
+    padding:9px 14px; border-radius:12px; box-shadow:var(--shadow);
+    display:flex; align-items:center; gap:8px;
+  }
+  .float-chip b{color:var(--gold); font-weight:500;}
+  .float-chip .dot{width:7px; height:7px; border-radius:50%; background:var(--cyan); box-shadow:0 0 10px var(--cyan); animation:blink 2s infinite;}
+  .chip-broker{top:16px; left:-34px; animation:floaty 5.5s .4s ease-in-out infinite;}
+  .chip-nepse{right:-42px; top:44%; animation:floaty 6.5s .9s ease-in-out infinite;}
+  .chip-pub{bottom:4px; right:-14px; animation:floaty 5.8s .2s ease-in-out infinite;}
+  .chip-research{left:-30px; bottom:-22px; animation:floaty 6s .6s ease-in-out infinite;}
+
+  /* ============ STATS ============ */
+  .stats{
+    border-top:1px solid var(--line); position:relative;
+    background:rgba(255,255,255,0.02);
+    -webkit-backdrop-filter:blur(10px); backdrop-filter:blur(10px);
+  }
+  .stats-inner{
+    max-width:1140px; margin:0 auto; padding:0 28px;
     display:grid; grid-template-columns:repeat(4, 1fr);
   }
-  .ticker-stat{
-    padding:26px 24px;
-    border-right:1px solid var(--line);
+  .stat{ padding:30px 24px; border-right:1px solid var(--line); text-align:center; position:relative; }
+  .stat:last-child{border-right:none;}
+  .stat::after{
+    content:""; position:absolute; left:50%; top:0; transform:translateX(-50%);
+    width:0; height:2px; background:var(--grad); transition:width .35s ease;
   }
-  .ticker-stat:last-child{border-right:none;}
-  .ticker-num{
-    font-family:var(--mono); color:var(--brass-light);
-    font-size:26px; font-weight:500; margin-bottom:4px;
+  .stat:hover::after{width:70%;}
+  .stat-num{
+    font-family:var(--disp); font-weight:700;
+    font-size:clamp(30px, 3.4vw, 42px); color:#fff; line-height:1;
+    margin-bottom:8px;
   }
-  .ticker-label{
-    font-size:12px; color:rgba(246,241,230,0.62);
-    text-transform:none;
+  .stat-num .suffix{font-size:.55em; color:var(--fuchsia);}
+  .stat-label{
+    font-family:var(--mono); font-size:11px; letter-spacing:0.1em;
+    color:var(--muted); text-transform:uppercase;
   }
+
+  /* Marquee */
+  .marquee{
+    overflow:hidden; border-top:1px solid var(--line);
+    padding:16px 0; background:rgba(7,11,22,0.5); position:relative;
+  }
+  .marquee-track{display:flex; gap:48px; width:max-content; animation:marquee 30s linear infinite;}
+  .marquee:hover .marquee-track{animation-play-state:paused;}
+  .marquee-item{
+    font-family:var(--mono); font-size:12px; letter-spacing:0.18em;
+    color:var(--faint); text-transform:uppercase; white-space:nowrap;
+    display:flex; align-items:center; gap:48px;
+  }
+  .marquee-item::after{content:"✦"; color:var(--violet); font-size:10px;}
 
   /* ============ SECTION SHELL ============ */
-  section{padding:88px 0;}
-  .section-head{
-    display:flex; align-items:baseline; justify-content:space-between;
-    margin-bottom:44px; gap:24px; flex-wrap:wrap;
-    border-bottom:1px solid var(--paper-line);
-    padding-bottom:20px;
-  }
+  section{padding:100px 0;}
+  .section-head{ margin-bottom:52px; position:relative; }
   .section-num{
-    font-family:var(--mono); font-size:12px; color:var(--brass); letter-spacing:0.05em;
-    display:block; margin-bottom:10px;
+    font-family:var(--mono); font-size:12px; letter-spacing:0.14em;
+    color:var(--violet); text-transform:uppercase; display:block; margin-bottom:12px;
   }
-  h2.section-title{
-    font-family:var(--serif); font-weight:600; font-size:34px; color:var(--ink);
+  .section-title{
+    font-family:var(--disp); font-weight:700;
+    font-size:clamp(28px, 4vw, 46px); letter-spacing:-0.015em; line-height:1.12;
   }
-  .section-sub{font-size:14px; color:var(--ink-muted); max-width:34ch; text-align:right;}
+  .section-sub{font-size:15px; color:var(--muted); margin-top:14px; max-width:52ch;}
 
   /* ============ PROFILE ============ */
-  .profile-grid{
-    display:grid; grid-template-columns:0.85fr 1.15fr; gap:64px;
-    align-items:start;
-  }
+  .profile-grid{display:grid; grid-template-columns:0.9fr 1.1fr; gap:56px; align-items:start;}
   .profile-lede{
-    font-family:var(--serif); font-size:23px; line-height:1.5; color:var(--ink);
-    font-weight:400;
+    font-size:clamp(19px, 2vw, 24px); font-weight:600; line-height:1.55;
+    font-family:var(--disp);
+    padding:26px; border:1px solid var(--line);
+    background:linear-gradient(160deg, rgba(139,92,246,0.1), rgba(34,211,238,0.04));
+    border-radius:20px; position:relative; overflow:hidden;
   }
-  .profile-body p{font-size:15.5px; color:var(--ink-muted); margin-bottom:16px;}
+  .profile-lede::before{
+    content:""; position:absolute; left:0; top:0; bottom:0; width:3px; background:var(--grad);
+  }
+  .profile-body p{font-size:15.5px; color:var(--muted); margin-bottom:16px;}
   .profile-body p:last-child{margin-bottom:0;}
-  .profile-body strong{color:var(--ink-text); font-weight:600;}
+  .profile-body strong{color:var(--text); font-weight:600;}
 
   .contact-card{
-    background:var(--ink); color:var(--parchment);
-    padding:28px; margin-top:32px;
+    background:rgba(255,255,255,0.03); border:1px solid var(--line);
+    border-radius:20px; padding:26px; margin-top:36px;
   }
   .contact-card h3{
-    font-family:var(--mono); font-size:12px; letter-spacing:0.06em; color:var(--brass-light);
-    margin-bottom:16px;
+    font-family:var(--mono); font-size:11.5px; letter-spacing:0.12em;
+    color:var(--gold); margin-bottom:14px; text-transform:uppercase;
   }
   .contact-row{
-    display:flex; align-items:baseline; gap:12px;
-    font-size:14px; padding:9px 0; border-top:1px solid var(--line);
+    display:flex; align-items:baseline; gap:14px;
+    font-size:14px; padding:11px 0; border-top:1px solid var(--line);
   }
   .contact-row:first-of-type{border-top:none;}
-  .contact-row span.k{color:rgba(246,241,230,0.5); min-width:64px; font-size:12px;}
+  .contact-row span.k{color:var(--faint); min-width:72px; font-size:12px; font-family:var(--mono);}
+  .contact-row span.v{color:var(--text);}
 
-  /* ============ EXPERIENCE TIMELINE ============ */
-  .timeline{position:relative; padding-left:0;}
+  /* ============ EXPERIENCE (timeline) ============ */
+  .timeline{position:relative;}
+  .timeline::before{
+    content:""; position:absolute; left:8px; top:6px; bottom:6px; width:2px;
+    background:linear-gradient(180deg, var(--cyan), var(--violet), var(--fuchsia));
+    opacity:0.5; border-radius:2px;
+  }
   .tl-item{
-    position:relative;
-    display:grid; grid-template-columns:150px 1fr; gap:32px;
-    padding:30px 0;
-    border-top:1px solid var(--paper-line);
+    position:relative; padding:26px 0 26px 40px;
   }
-  .tl-item:first-child{border-top:none;}
+  .tl-item::before{
+    content:""; position:absolute; left:2px; top:38px; width:14px; height:14px;
+    border-radius:50%; background:var(--bg);
+    border:3px solid var(--violet); box-shadow:0 0 16px rgba(139,92,246,0.6);
+    transition:background .3s, box-shadow .3s;
+  }
+  .tl-item:hover::before{background:var(--grad);}
   .tl-date{
-    font-family:var(--mono); font-size:13px; color:var(--brass);
-    padding-top:2px;
+    font-family:var(--mono); font-size:12px; letter-spacing:0.08em;
+    color:var(--cyan); margin-bottom:8px; display:inline-block;
+    background:rgba(34,211,238,0.08); border:1px solid rgba(34,211,238,0.2);
+    padding:5px 12px; border-radius:999px;
   }
-  .tl-role{font-family:var(--serif); font-size:20px; font-weight:600; color:var(--ink); margin-bottom:4px;}
-  .tl-org{font-size:13.5px; color:var(--ink-muted); margin-bottom:12px; font-weight:500;}
-  .tl-list{list-style:none; padding:0;}
+  .tl-card{
+    background:var(--surface); border:1px solid var(--line);
+    border-radius:18px; padding:24px 26px; transition:transform .3s, border-color .3s, box-shadow .3s;
+  }
+  .tl-card:hover{transform:translateX(8px); border-color:rgba(139,92,246,0.5); box-shadow:var(--shadow);}
+  .tl-role{font-family:var(--disp); font-size:19px; font-weight:600; margin-bottom:4px;}
+  .tl-org{font-size:13px; color:var(--muted); margin-bottom:14px; font-weight:500;}
+  .tl-list{list-style:none;}
   .tl-list li{
-    font-size:14.5px; color:var(--ink-muted); padding-left:16px; position:relative; margin-bottom:6px;
+    font-size:14.5px; color:var(--muted); padding-left:22px; position:relative; margin-bottom:7px;
   }
   .tl-list li::before{
-    content:"—"; position:absolute; left:0; color:var(--brass);
+    content:"▸"; position:absolute; left:0; color:var(--violet); font-size:14px; top:1px;
   }
 
   /* ============ CERTIFICATES ============ */
-  .cert-filter{
-    display:flex; gap:8px; flex-wrap:wrap; margin-bottom:36px;
-  }
+  .cert-filter{display:flex; gap:10px; flex-wrap:wrap; margin-bottom:40px;}
   .chip{
-    font-family:var(--mono); font-size:11.5px; letter-spacing:0.02em;
-    padding:8px 14px; border:1px solid var(--paper-line);
-    background:transparent; color:var(--ink-muted);
-    cursor:pointer; transition:all .15s; border-radius:2px;
+    font-family:var(--mono); font-size:11.5px; letter-spacing:0.04em;
+    padding:9px 16px; border:1px solid var(--line);
+    background:var(--surface); color:var(--muted);
+    cursor:pointer; transition:all .2s; border-radius:999px;
   }
-  .chip:hover{border-color:var(--brass);}
-  .chip.active{background:var(--ink); color:var(--parchment); border-color:var(--ink);}
+  .chip:hover{border-color:var(--violet); color:#fff; transform:translateY(-1px);}
+  .chip.active{background:var(--grad); color:#fff; border-color:transparent; box-shadow:0 8px 22px -10px rgba(139,92,246,0.8);}
 
-  .cert-ledger{border-top:1px solid var(--paper-line);}
-  .cert-row{
-    display:grid; grid-template-columns:110px 1fr 190px;
-    gap:28px;
-    padding:26px 18px;
-    margin:0 -18px;
-    border-bottom:1px solid var(--paper-line);
-    align-items:center;
-    cursor:pointer;
-    transition:background-color .3s, padding-left .3s;
+  .cert-grid{
+    display:grid; grid-template-columns:repeat(auto-fill, minmax(320px, 1fr));
+    gap:22px;
   }
-  .cert-row:hover{background:var(--accent-soft); padding-left:26px;}
-  .cert-row:hover .cert-thumb img{transform:scale(1.04);}
-  .cert-row:hover .cert-title{color:var(--brass);}
+  .cert-card{
+    background:var(--surface); border:1px solid var(--line);
+    border-radius:20px; overflow:hidden; cursor:pointer; position:relative;
+    transition:transform .35s cubic-bezier(.16,.6,.3,1), border-color .3s, box-shadow .35s;
+  }
+  .cert-card:hover{transform:translateY(-8px); border-color:rgba(139,92,246,0.55); box-shadow:0 28px 60px -25px rgba(139,92,246,0.45);}
+  .cert-card .thumb{
+    height:170px; overflow:hidden; position:relative; background:var(--bg-2);
+    transition:height .3s;
+  }
+  .cert-card .thumb img{
+    width:100%; height:100%; object-fit:cover; transition:transform .6s cubic-bezier(.16,.6,.3,1);
+  }
+  .cert-card:hover .thumb img{transform:scale(1.08);}
+  .cert-card .thumb::after{
+    content:"↗"; position:absolute; right:14px; top:14px;
+    width:36px; height:36px; border-radius:50%;
+    background:rgba(7,11,22,0.7); border:1px solid var(--line-strong);
+    -webkit-backdrop-filter:blur(6px); backdrop-filter:blur(6px);
+    display:grid; place-items:center; font-size:16px;
+    opacity:0; transform:translateY(-8px); transition:opacity .3s, transform .3s;
+  }
+  .cert-card:hover .thumb::after{opacity:1; transform:none;}
+  .cert-card .body{padding:20px 22px 22px;}
   .cert-date{
-    font-family:var(--mono); font-size:12.5px; color:var(--ink-muted);
+    font-family:var(--mono); font-size:11px; letter-spacing:0.06em;
+    color:var(--gold); margin-bottom:10px; display:block;
   }
-  .cert-date b{display:block; font-size:20px; color:var(--ink); font-weight:600; font-family:var(--serif);}
-  .cert-title{
-    font-family:var(--serif); font-size:19px; font-weight:600; color:var(--ink);
-    transition:color .15s; margin-bottom:6px;
-  }
-  .cert-meta{font-size:13px; color:var(--ink-muted);}
+  .cert-title{font-family:var(--disp); font-size:16.5px; font-weight:600; line-height:1.4; color:var(--text);}
+  .cert-meta{font-size:13px; color:var(--muted); margin-top:8px;}
   .cert-tag{
-    display:inline-block; font-family:var(--mono); font-size:10.5px; letter-spacing:0.03em;
-    color:var(--accent); background:var(--accent-soft); border:1px solid rgba(20,112,90,0.22);
-    padding:3px 9px; margin-top:10px; text-transform:uppercase;
-    transition:background .25s, color .25s;
+    display:inline-block; font-family:var(--mono); font-size:10px; letter-spacing:0.1em;
+    text-transform:uppercase; margin-top:14px; padding:4px 11px; border-radius:999px;
+    background:rgba(34,211,238,0.1); color:var(--cyan); border:1px solid rgba(34,211,238,0.25);
   }
-  .cert-row:hover .cert-tag{background:var(--ink); color:var(--brass-light);}
-  .cert-thumb{
-    width:190px; height:130px; overflow:hidden; border:1px solid var(--paper-line);
-    background:#fff;
-  }
-  .cert-thumb img{
-    width:100%; height:100%; object-fit:cover; transition:transform .3s;
-  }
+  .cert-tag.finance{background:rgba(242,179,61,0.1); color:var(--gold); border-color:rgba(242,179,61,0.28);}
+  .cert-tag.sports{background:rgba(34,211,238,0.1); color:var(--cyan); border-color:rgba(34,211,238,0.25);}
+  .cert-tag.college{background:rgba(139,92,246,0.12); color:#B79AFA; border-color:rgba(139,92,246,0.3);}
+  .cert-tag.other{background:rgba(232,121,249,0.1); color:#EF9FF6; border-color:rgba(232,121,249,0.28);}
 
   /* ============ LIGHTBOX ============ */
   .lightbox{
-    position:fixed; inset:0; background:rgba(11,30,51,0.92);
+    position:fixed; inset:0; background:rgba(5,8,16,0.9);
     display:none; align-items:center; justify-content:center;
-    z-index:1000; padding:40px;
+    z-index:1000; padding:40px; cursor:zoom-out;
+    -webkit-backdrop-filter:blur(10px); backdrop-filter:blur(10px);
   }
-  .lightbox.open{display:flex;}
-  .lightbox-inner{max-width:800px; max-height:90vh; position:relative;}
-  .lightbox-inner img{max-height:82vh; width:auto; margin:0 auto; border:2px solid var(--brass);}
-  .lightbox-cap{color:var(--parchment); text-align:center; margin-top:16px; font-size:14px; font-family:var(--mono);}
+  .lightbox.open{display:flex; animation:fadeIn .22s both;}
+  .lightbox-inner{max-width:820px; max-height:90vh; position:relative;}
+  .lightbox-inner img{
+    max-height:78vh; width:auto; margin:0 auto;
+    border:2px solid var(--line-strong); border-radius:14px; box-shadow:0 40px 90px -30px rgba(0,0,0,0.9);
+  }
+  .lightbox-cap{color:var(--text); text-align:center; margin-top:16px; font-size:13px; font-family:var(--mono); color:var(--muted);}
   .lightbox-close{
-    position:absolute; top:-44px; right:0; background:none; border:none;
-    color:var(--parchment); font-size:28px; cursor:pointer; line-height:1;
+    position:absolute; top:-46px; right:0; background:none; border:none;
+    color:#fff; font-size:30px; cursor:pointer; line-height:1; transition:transform .2s;
   }
+  .lightbox-close:hover{transform:rotate(90deg);}
 
   /* ============ PUBLICATIONS ============ */
-  .pub-list{display:flex; flex-direction:column; gap:0;}
+  .pub-list{display:flex; flex-direction:column; gap:20px;}
   .pub-item{
-    padding:26px 0; border-top:1px solid var(--paper-line);
-    display:grid; grid-template-columns:1fr auto; gap:20px; align-items:baseline;
+    padding:28px 30px; border:1px solid var(--line); border-radius:20px;
+    background:linear-gradient(150deg, rgba(139,92,246,0.06), transparent 60%);
+    display:grid; grid-template-columns:1fr auto; gap:20px; align-items:center;
+    transition:transform .3s, border-color .3s, box-shadow .3s;
+    position:relative; overflow:hidden;
   }
-  .pub-item:first-child{border-top:none;}
-  .pub-title{font-family:var(--serif); font-size:18px; font-style:italic; color:var(--ink); margin-bottom:6px;}
-  .pub-venue{font-size:13.5px; color:var(--ink-muted);}
-  .pub-venue b{color:var(--ink-text); font-weight:600; font-style:normal;}
-  .pub-date{font-family:var(--mono); font-size:12.5px; color:var(--brass); white-space:nowrap;}
+  .pub-item::before{
+    content:""; position:absolute; left:0; top:0; bottom:0; width:3px;
+    background:var(--grad);
+  }
+  .pub-item:hover{transform:translateX(8px); border-color:rgba(34,211,238,0.4); box-shadow:var(--shadow);}
+  .pub-title{font-family:var(--disp); font-size:18px; font-style:italic; font-weight:500; color:var(--text); margin-bottom:8px; line-height:1.5;}
+  .pub-venue{font-size:13.5px; color:var(--muted);}
+  .pub-venue b{color:var(--cyan); font-weight:600; font-style:normal;}
+  .pub-date{
+    font-family:var(--mono); font-size:11.5px; letter-spacing:0.08em;
+    color:var(--gold); white-space:nowrap; border:1px solid rgba(242,179,61,0.3);
+    padding:6px 12px; border-radius:999px; background:var(--gold-soft);
+  }
 
   /* ============ EDUCATION ============ */
-  .edu-grid{display:grid; grid-template-columns:1fr 1fr; gap:28px;}
+  .edu-grid{display:grid; grid-template-columns:1fr 1fr; gap:24px;}
   .edu-card{
-    border:1px solid var(--paper-line); background:#fff; padding:30px;
-    position:relative;
+    border:1px solid var(--line); background:var(--surface);
+    padding:30px; border-radius:20px; position:relative; overflow:hidden;
     transition:transform .3s, box-shadow .3s, border-color .3s;
   }
-  .edu-card:hover{transform:translateY(-5px); box-shadow:0 22px 44px -30px rgba(10,28,48,.35); border-color:rgba(20,112,90,.25);}
+  .edu-card:hover{transform:translateY(-6px); box-shadow:var(--shadow); border-color:rgba(34,211,238,0.4);}
   .edu-card::before{
     content:""; position:absolute; top:0; left:0; width:100%; height:3px;
-    background:linear-gradient(90deg, var(--brass), var(--brass-light) 55%, var(--accent));
+    background:var(--grad); background-size:200% 100%; animation:shimmer 6s linear infinite;
   }
-  .edu-year{font-family:var(--mono); font-size:12px; color:var(--brass); margin-bottom:14px;}
-  .edu-degree{font-family:var(--serif); font-size:21px; font-weight:600; color:var(--ink); margin-bottom:6px;}
-  .edu-school{font-size:14px; color:var(--ink-muted); margin-bottom:14px;}
+  .edu-year{font-family:var(--mono); font-size:11px; letter-spacing:0.08em; color:var(--fuchsia); margin-bottom:14px; text-transform:uppercase;}
+  .edu-degree{font-family:var(--disp); font-size:21px; font-weight:700; color:#fff; margin-bottom:8px;}
+  .edu-school{font-size:14px; color:var(--muted); margin-bottom:16px;}
   .edu-gpa{
-    font-family:var(--mono); font-size:12.5px; color:var(--ink-text);
-    border-top:1px solid var(--paper-line); padding-top:14px;
+    font-family:var(--mono); font-size:12.5px; color:var(--gold);
+    border-top:1px solid var(--line); padding-top:14px;
   }
 
   /* ============ SKILLS ============ */
-  .skills-wrap{display:grid; grid-template-columns:1.3fr 1fr; gap:64px;}
-  .skill-tags{display:flex; flex-wrap:wrap; gap:10px;}
-  .skill-tag{
-    font-size:13.5px; padding:9px 16px; border:1px solid var(--paper-line);
-    background:#fff; color:var(--ink-text);
-    transition:transform .2s, border-color .2s, color .2s, background .2s;
-  }
-  .skill-tag:hover{transform:translateY(-3px); border-color:var(--accent); color:var(--accent); background:var(--accent-soft);}
-  .side-block{margin-bottom:36px;}
-  .side-block:last-child{margin-bottom:0;}
+  .skills-wrap{display:grid; grid-template-columns:1.25fr 1fr; gap:52px; align-items:start;}
   .side-title{
-    font-family:var(--mono); font-size:12px; letter-spacing:0.05em; color:var(--brass);
-    margin-bottom:14px;
+    font-family:var(--mono); font-size:11.5px; letter-spacing:0.12em; color:var(--gold);
+    text-transform:uppercase; margin-bottom:18px;
   }
-  .lang-row{display:flex; justify-content:space-between; font-size:14.5px; padding:9px 0; border-top:1px solid var(--paper-line);}
+  .skill-bars{display:flex; flex-direction:column; gap:16px;}
+  .skill-row .skill-name{font-size:14px; color:var(--text); margin-bottom:7px; display:flex; justify-content:space-between;}
+  .skill-row .skill-name span:last-child{font-family:var(--mono); color:var(--cyan); font-size:12px;}
+  .skill-bar{height:8px; border-radius:999px; background:rgba(255,255,255,0.07); overflow:hidden;}
+  .skill-bar i{
+    display:block; height:100%; width:0; border-radius:999px;
+    background:var(--grad); transition:width 1.4s cubic-bezier(.16,.6,.3,1);
+  }
+  .skill-tags{display:flex; flex-wrap:wrap; gap:10px; margin-top:26px;}
+  .skill-tag{
+    font-size:13px; padding:9px 16px; border:1px solid var(--line);
+    background:var(--surface); color:var(--text); border-radius:999px;
+    transition:transform .2s, border-color .2s, color .2s, background .2s, box-shadow .2s;
+    cursor:default;
+  }
+  .skill-tag:hover{transform:translateY(-4px); border-color:var(--violet); background:rgba(139,92,246,0.12); box-shadow:0 10px 24px -10px rgba(139,92,246,0.5);}
+  .side-block{margin-bottom:34px;}
+  .side-block:last-child{margin-bottom:0;}
+  .lang-row{
+    display:flex; justify-content:space-between; font-size:14.5px;
+    padding:12px 0; border-top:1px solid var(--line);
+  }
   .lang-row:first-of-type{border-top:none;}
-  .lang-row span:last-child{color:var(--ink-muted); font-family:var(--mono); font-size:12.5px;}
-
+  .lang-row span:last-child{color:var(--cyan); font-family:var(--mono); font-size:12.5px;}
   .ref-list{display:grid; gap:16px;}
   .ref-card{
-    border:1px solid var(--paper-line); background:#fff; padding:24px;
-    border-left:3px solid var(--brass);
+    border:1px solid var(--line); background:var(--surface);
+    padding:22px; border-radius:16px;
+    border-left:3px solid var(--violet);
     transition:transform .3s, box-shadow .3s, border-color .3s;
   }
-  .ref-card:hover{transform:translateY(-4px); box-shadow:0 20px 42px -32px rgba(10,28,48,.4); border-left-color:var(--accent);}
-  .ref-name{font-family:var(--serif); font-size:17px; font-weight:600; color:var(--ink);}
-  .ref-title{font-size:13px; color:var(--ink-muted); margin-bottom:12px; line-height:1.55;}
-  .ref-detail{font-size:13px; color:var(--ink-muted); line-height:2; display:flex; flex-wrap:wrap; gap:4px 10px;}
-  .ref-detail a{color:var(--accent); text-decoration:none; border-bottom:1px dotted rgba(20,112,90,.35); transition:color .2s, border-color .2s;}
-  .ref-detail a:hover{color:var(--brass); border-color:transparent;}
+  .ref-card:hover{transform:translateY(-4px); box-shadow:var(--shadow); border-left-color:var(--cyan);}
+  .ref-name{font-family:var(--disp); font-size:16.5px; font-weight:600; color:#fff;}
+  .ref-title{font-size:13px; color:var(--muted); margin-bottom:12px; line-height:1.55;}
+  .ref-detail{font-size:13px; color:var(--muted); line-height:2.1; display:flex; flex-wrap:wrap; gap:4px 12px;}
+  .ref-detail a{color:var(--cyan); text-decoration:none; border-bottom:1px dotted rgba(34,211,238,0.35); transition:color .2s, border-color .2s;}
+  .ref-detail a:hover{color:var(--gold); border-color:transparent;}
 
-  /* ============ FOOTER / CV ============ */
+  /* ============ CTA BAND ============ */
+  .cta-band{
+    text-align:center; padding:90px 0 110px; position:relative; overflow:hidden;
+  }
+  .cta-band::before{
+    content:""; position:absolute; left:50%; top:50%; transform:translate(-50%,-50%);
+    width:700px; height:700px; border-radius:50%;
+    background:radial-gradient(circle, rgba(139,92,246,0.18), transparent 65%);
+    filter:blur(40px); z-index:-1;
+  }
+  .cta-title{
+    font-family:var(--disp); font-size:clamp(30px, 4.6vw, 52px);
+    font-weight:700; letter-spacing:-0.02em; line-height:1.15; margin-bottom:20px;
+  }
+  .cta-sub{font-size:16px; color:var(--muted); max-width:52ch; margin:0 auto 36px;}
+  .cta-btns{display:flex; gap:16px; justify-content:center; flex-wrap:wrap;}
+
+  /* ============ FOOTER ============ */
   footer{
-    background:var(--ink); color:var(--parchment); padding:76px 0 40px;
     border-top:1px solid var(--line);
+    background:rgba(5,8,16,0.6);
+    -webkit-backdrop-filter:blur(10px); backdrop-filter:blur(10px);
+    padding:60px 0 34px;
   }
-  .footer-grid{
-    display:grid; grid-template-columns:1.2fr 1fr; gap:56px;
-    padding-bottom:56px; border-bottom:1px solid var(--line);
+  .foot-grid{
+    display:grid; grid-template-columns:1.3fr 1fr; gap:48px;
+    padding-bottom:44px; border-bottom:1px solid var(--line);
   }
-  .footer-lede{
-    font-family:var(--serif); font-size:30px; line-height:1.3; margin-bottom:26px;
+  .foot-name{font-family:var(--disp); font-size:22px; font-weight:700; margin-bottom:6px;}
+  .foot-role{font-family:var(--mono); font-size:11.5px; letter-spacing:0.1em; color:var(--violet); text-transform:uppercase; margin-bottom:16px;}
+  .foot-note{font-size:14px; color:var(--muted); max-width:50ch; margin-bottom:24px;}
+  .foot-links{display:flex; flex-wrap:wrap; gap:12px;}
+  .foot-tag{
+    font-size:12.5px; color:var(--text); text-decoration:none;
+    border:1px solid var(--line); border-radius:999px; padding:7px 15px;
+    transition:border-color .2s, color .2s, background .2s; font-family:var(--mono);
+    display:inline-flex; align-items:center; gap:8px;
   }
-  .footer-note{font-size:14px; color:rgba(246,241,230,0.6); max-width:52ch; margin-bottom:28px;}
+  .foot-tag:hover{border-color:var(--violet); background:rgba(139,92,246,0.1);}
+  .foot-tag .dot{width:6px; height:6px; border-radius:50%; background:var(--gold);}
   .foot-contact-list{list-style:none;}
   .foot-contact-list li{
-    padding:12px 0; border-top:1px solid var(--line); font-size:14px;
+    padding:13px 0; border-top:1px solid var(--line); font-size:14px;
     display:flex; justify-content:space-between; gap:16px;
   }
   .foot-contact-list li:first-child{border-top:none;}
-  .foot-contact-list span.k{color:rgba(246,241,230,0.5); font-family:var(--mono); font-size:11.5px;}
+  .foot-contact-list span.k{color:var(--faint); font-family:var(--mono); font-size:11px; letter-spacing:0.08em; text-transform:uppercase;}
   .bottom-bar{
     display:flex; justify-content:space-between; align-items:center; padding-top:28px;
-    font-size:12.5px; color:rgba(246,241,230,0.42); flex-wrap:wrap; gap:12px;
+    font-size:12.5px; color:var(--faint); flex-wrap:wrap; gap:12px;
   }
-
-  .footer-download{
-    margin-top:34px; padding-top:26px; border-top:1px solid var(--line);
+  .back-top{
+    color:var(--cyan); text-decoration:none; font-family:var(--mono); font-size:12px;
+    transition:color .2s;
   }
-  .download-h{font-family:var(--mono); font-size:11px; letter-spacing:.08em; color:var(--brass-light); margin-bottom:14px;}
-  .download-row{display:flex; align-items:center; gap:16px; flex-wrap:wrap;}
-  .download-row .btn{flex:none;}
-  .download-note{font-size:12.5px; color:rgba(246,241,230,0.55); max-width:42ch; margin-top:12px;}
+  .back-top:hover{color:var(--gold);}
 
   /* ============ RESPONSIVE ============ */
-  @media (max-width:860px){
-    .wrap{padding:0 20px;}
-    .nav-inner{padding:16px 20px;}
-    .nav-toggle{display:block;}
-    nav.nav-links{display:none; position:absolute; top:100%; left:0; right:0; flex-direction:column; gap:2px; background:var(--ink); padding:14px 24px 22px; border-bottom:1px solid var(--line);}
-    nav.nav-links.open{display:flex;}
-    nav.nav-links a{padding:12px 0; border-bottom:1px solid var(--line);}
-    .hero-inner{grid-template-columns:1fr; padding:56px 20px 44px; text-align:left;}
-    .hero-portrait{justify-self:start;}
-    .ticker-inner{grid-template-columns:1fr 1fr; padding:0 20px;}
-    .ticker-stat{border-right:none; border-bottom:1px solid var(--line);}
-    section{padding:56px 0;}
-    .section-head{flex-direction:column; align-items:flex-start;}
-    .section-sub{text-align:left;}
+  @media (max-width:960px){
+    .hero-inner{grid-template-columns:1fr; text-align:center; padding-top:20px;}
+    .hero-role{margin:0 auto 34px;}
+    .hero-cta{justify-content:center;}
+    .hero-portrait{justify-self:center; margin-top:10px;}
+    .stats-inner{grid-template-columns:1fr 1fr;}
+    .stat{border-bottom:1px solid var(--line);}
+    .stat:nth-child(2n){border-right:none;}
     .profile-grid{grid-template-columns:1fr; gap:36px;}
-    .tl-item{grid-template-columns:1fr; gap:8px;}
-    .cert-row{grid-template-columns:1fr; gap:14px;}
-    .cert-thumb{width:100%; height:180px;}
-    .edu-grid{grid-template-columns:1fr;}
     .skills-wrap{grid-template-columns:1fr; gap:40px;}
-    .footer-grid{grid-template-columns:1fr; gap:36px;}
+    .foot-grid{grid-template-columns:1fr;}
+    .float-chip.chip-broker{left:0;}
+    .float-chip.chip-nepse{right:0;}
+  }
+  @media (max-width:760px){
+    .nav-toggle{display:block;}
+    nav.nav-links{
+      display:none; position:fixed; top:0; right:0; bottom:0;
+      width:min(76vw, 320px); flex-direction:column; align-items:flex-start; gap:6px;
+      background:rgba(9,13,24,0.97); -webkit-backdrop-filter:blur(20px); backdrop-filter:blur(20px);
+      padding:90px 32px; border-left:1px solid var(--line); z-index:300;
+    }
+    nav.nav-links.open{display:flex; animation:fadeIn .25s both;}
+    nav.nav-links a{width:100%; padding:12px 0; font-size:15px; border-bottom:1px solid var(--line);}
+    nav.nav-links a::after{display:none;}
+    .nav-inner .close-nav{
+      position:absolute; top:22px; right:24px; background:none; border:none;
+      color:var(--text); font-size:26px; cursor:pointer; line-height:1;
+    }
+    .edu-grid{grid-template-columns:1fr;}
     .pub-item{grid-template-columns:1fr;}
+    .cert-grid{grid-template-columns:1fr;}
+    section{padding:72px 0;}
+    .marquee-item{font-size:10.5px;}
+    .chip-research{left:6px;}
+  }
+  @media (max-width:480px){
+    .hero-name{font-size:38px;}
+    .portrait-halo{width:250px; height:250px;}
+    .portrait-halo img{width:170px; height:170px;}
+    .stats-inner{grid-template-columns:1fr;}
+    .stat{border-right:none;}
   }
 
   @media (prefers-reduced-motion:reduce){
     *,*::before,*::after{animation:none !important; transition:none !important;}
-    .reveal-init{opacity:1; transform:none;}
+    .reveal{opacity:1; transform:none;}
   }
 </style>
 </head>
 <body>
 
+<div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
+
 <header class="site-nav">
   <div class="nav-inner">
-    <div class="nav-mark">BHUWAN <span>KANDEL</span></div>
-    <nav class="nav-links">
+    <div class="nav-mark"><span class="logo-dot"></span>BHUWAN <span class="grad-text">KANDEL</span></div>
+    <nav class="nav-links" id="navLinks">
+      <button class="close-nav" id="navClose" aria-label="Close menu">&times;</button>
       <a href="#profile">Profile</a>
       <a href="#experience">Experience</a>
       <a href="#certificates">Certificates</a>
       <a href="#publications">Publications</a>
       <a href="#education">Education</a>
+      <a href="#skills">Skills</a>
       <a href="#contact">Contact</a>
-      <a href="Bhuwan-Kandel-CV.pdf" download>Download CV</a>
+      <a href="Bhuwan-Kandel-CV.pdf" download class="btn btn-primary">Download CV</a>
     </nav>
-    <button class="nav-toggle" aria-label="Toggle menu">&#9776;</button>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">&#9776;</button>
   </div>
 </header>
 
-<section class="hero">
-  <div class="hero-inner">
-    <div>
-      <div class="eyebrow-line">BBA SCHOLAR · CAPITAL MARKETS · CHITWAN, NEPAL</div>
-      <h1 class="hero-name">Bhuwan Kandel</h1>
-      <p class="hero-role">A BBA student at <strong>Valley State College</strong> building a record in Nepal's capital markets — three years reading the tape, an internship on a brokerage floor, published research on macroeconomic indicators and NEPSE, and a growing shelf of national-level recognitions.</p>
-      <div class="hero-cta">
-        <a href="#certificates" class="btn btn-primary">View the certificate ledger</a>
-        <a href="#contact" class="btn btn-ghost">Get in touch</a>
+<section class="hero" id="top">
+  <div class="hero-orbs" aria-hidden="true">
+    <div class="orb a"></div>
+    <div class="orb b"></div>
+    <div class="orb c"></div>
+  </div>
+  <div class="wrap">
+    <div class="hero-inner">
+      <div>
+        <div class="eyebrow-line">BBA Scholar · Capital Markets · Chitwan, Nepal</div>
+        <h1 class="hero-name">
+          <span class="block">Bhuwan</span>
+          <span class="block grad-text">Kandel</span>
+        </h1>
+        <p class="hero-role">A <strong>BBA student at Valley State College</strong> building a record in Nepal's capital markets — three years reading the tape, an internship on a brokerage floor, published research on macroeconomic indicators and NEPSE, and a growing shelf of national-level recognitions.</p>
+        <div class="hero-cta">
+          <a href="#certificates" class="btn btn-primary">View the certificate ledger</a>
+          <a href="#contact" class="btn btn-ghost">Get in touch</a>
+        </div>
       </div>
-    </div>
-    <div class="hero-portrait">
-      <div class="portrait-ring">
-        <img src="PP BHuwan.jpeg" alt="Portrait of Bhuwan Kandel">
+      <div class="hero-portrait">
+        <div class="portrait-halo">
+          <div class="glow"></div>
+          <div class="ring"></div>
+          <div class="ring two"></div>
+          <img src="PP BHuwan.jpeg" alt="Portrait of Bhuwan Kandel">
+        </div>
+        <div class="float-chip chip-broker"><span class="dot"></span>Brokerage Intern · <b>Sani Sec</b></div>
+        <div class="float-chip chip-nepse"><span class="dot"></span>NEPSE Analyst</div>
+        <div class="float-chip chip-pub"><span class="dot"></span>Published · <b>HJMR</b></div>
+        <div class="float-chip chip-research"><span class="dot"></span>Intl. Conference</div>
       </div>
     </div>
   </div>
-  <div class="ticker">
-    <div class="ticker-inner">
-      <div class="ticker-stat">
-        <div class="ticker-num">3+</div>
-        <div class="ticker-label">Years in the stock market</div>
+  <div class="stats">
+    <div class="stats-inner">
+      <div class="stat">
+        <div class="stat-num"><span class="count" data-count="3">0</span><span class="suffix">+</span></div>
+        <div class="stat-label">Years in the stock market</div>
       </div>
-      <div class="ticker-stat">
-        <div class="ticker-num">14</div>
-        <div class="ticker-label">Certificates and awards</div>
+      <div class="stat">
+        <div class="stat-num"><span class="count" data-count="14">0</span></div>
+        <div class="stat-label">Certificates and awards</div>
       </div>
-      <div class="ticker-stat">
-        <div class="ticker-num">02</div>
-        <div class="ticker-label">Published research papers</div>
+      <div class="stat">
+        <div class="stat-num"><span class="count" data-count="2">0</span></div>
+        <div class="stat-label">Published research papers</div>
       </div>
-      <div class="ticker-stat">
-        <div class="ticker-num">2026</div>
-        <div class="ticker-label">Expected BBA graduation</div>
+      <div class="stat">
+        <div class="stat-num"><span class="count" data-count="2026">0</span></div>
+        <div class="stat-label">Expected BBA graduation</div>
       </div>
+    </div>
+  </div>
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track">
+      <span class="marquee-item">Stock Market</span>
+      <span class="marquee-item">NEPSE Analysis</span>
+      <span class="marquee-item">Research</span>
+      <span class="marquee-item">Brokerage</span>
+      <span class="marquee-item">Financial Literacy</span>
+      <span class="marquee-item">Event Management</span>
+      <span class="marquee-item">Public Speaking</span>
+      <span class="marquee-item">Leadership</span>
+      <span class="marquee-item">Stock Market</span>
+      <span class="marquee-item">NEPSE Analysis</span>
+      <span class="marquee-item">Research</span>
+      <span class="marquee-item">Brokerage</span>
+      <span class="marquee-item">Financial Literacy</span>
+      <span class="marquee-item">Event Management</span>
+      <span class="marquee-item">Public Speaking</span>
+      <span class="marquee-item">Leadership</span>
     </div>
   </div>
 </section>
 
 <section id="profile">
   <div class="wrap">
-    <div class="section-head">
-      <div>
-        <span class="section-num">01 — PROFILE</span>
-        <h2 class="section-title">Who I am</h2>
-      </div>
+    <div class="section-head reveal">
+      <span class="section-num">01 — Profile</span>
+      <h2 class="section-title">Who I <span class="grad-text">am</span></h2>
       <p class="section-sub">A finance-minded student who learns markets by working inside them, not just studying them.</p>
     </div>
     <div class="profile-grid">
-      <div class="profile-lede">
+      <div class="profile-lede reveal" data-delay="1">
         Three years of hands-on stock market experience, a completed brokerage internship, and research presented on two continents — all before finishing the BBA.
       </div>
-      <div class="profile-body">
+      <div class="profile-body reveal" data-delay="2">
         <p>I'm a <strong>BBA student at Valley State College</strong> (affiliated to Pokhara University) with over three years of personal experience following the stock market. I completed a three-month internship at <strong>Sani Securities Pvt. Ltd. (Stock Broker No. 42, licensed by SEBON)</strong>, where I assisted in trade execution, analyzed NEPSE trends, and supported portfolio tracking for clients.</p>
         <p>My academic work centers on how global macroeconomic forces move the Nepal Stock Exchange — a research paper on this topic has been <strong>presented at an international conference</strong> in Indore, India, and <strong>published in the Himalayan Journal of Multidisciplinary Research (HJMR)</strong>.</p>
         <p>Beyond the numbers, I take on leadership and mentoring roles: training peers on share-market basics, coordinating college events, and most recently serving as <strong>Event Manager</strong> for a Parliamentary Simulation of a Budget Speech and Q&A session — while also stepping into the debate itself as the role-played leader of a parliamentary party.</p>
+        <div class="contact-card" id="contact">
+          <h3>Quick Contact</h3>
+          <div class="contact-row"><span class="k">Phone</span><span class="v">9848515544</span></div>
+          <div class="contact-row"><span class="k">Email</span><span class="v">kandelbhuwan9845@gmail.com</span></div>
+          <div class="contact-row"><span class="k">Location</span><span class="v">Khairahani-9, Bharatpur, Chitwan, Nepal</span></div>
+        </div>
       </div>
-    </div>
-
-    <div class="contact-card" id="contact">
-      <h3>QUICK CONTACT</h3>
-      <div class="contact-row"><span class="k">Phone</span><span>9848515544</span></div>
-      <div class="contact-row"><span class="k">Email</span><span>kandelbhuwan9845@gmail.com</span></div>
-      <div class="contact-row"><span class="k">Location</span><span>Khairahani-9, Bharatpur, Chitwan, Nepal</span></div>
     </div>
   </div>
 </section>
 
-<section id="experience" style="background:var(--parchment-2);">
+<section id="experience">
   <div class="wrap">
-    <div class="section-head">
-      <div>
-        <span class="section-num">02 — EXPERIENCE</span>
-        <h2 class="section-title">Where I've worked</h2>
-      </div>
+    <div class="section-head reveal">
+      <span class="section-num">02 — Experience</span>
+      <h2 class="section-title">Where I've <span class="grad-text">worked</span></h2>
       <p class="section-sub">Trading floors, mentoring sessions, research desks, and event floors.</p>
     </div>
     <div class="timeline">
 
-      <div class="tl-item">
+      <div class="tl-item reveal">
         <div class="tl-date">AUG — NOV 2025</div>
-        <div>
+        <div class="tl-card">
           <div class="tl-role">Intern</div>
           <div class="tl-org">Sani Securities Pvt. Ltd. — Stock Broker No. 42, licensed by SEBON</div>
           <ul class="tl-list">
@@ -575,9 +781,9 @@
         </div>
       </div>
 
-      <div class="tl-item">
+      <div class="tl-item reveal">
         <div class="tl-date">MAR 2025</div>
-        <div>
+        <div class="tl-card">
           <div class="tl-role">Peer Mentor — Finance and Education</div>
           <div class="tl-org">Valley State College, Nepali Share Market Workshop</div>
           <ul class="tl-list">
@@ -588,9 +794,9 @@
         </div>
       </div>
 
-      <div class="tl-item">
+      <div class="tl-item reveal">
         <div class="tl-date">OCT 2025</div>
-        <div>
+        <div class="tl-card">
           <div class="tl-role">Research Paper Presenter — International Conference</div>
           <div class="tl-org">St. Paul Institute of Professional Studies, Indore, India</div>
           <ul class="tl-list">
@@ -600,9 +806,9 @@
         </div>
       </div>
 
-      <div class="tl-item">
+      <div class="tl-item reveal">
         <div class="tl-date">2024 — 2026</div>
-        <div>
+        <div class="tl-card">
           <div class="tl-role">National-Level Competitor</div>
           <div class="tl-org">Stock Pitching and Finance Quiz Competitions</div>
           <ul class="tl-list">
@@ -612,9 +818,9 @@
         </div>
       </div>
 
-      <div class="tl-item">
+      <div class="tl-item reveal">
         <div class="tl-date">JUNE 2026</div>
-        <div>
+        <div class="tl-card">
           <div class="tl-role">Event Manager — Parliamentary Simulation of Budget Speech and Q&A</div>
           <div class="tl-org">Department of Soft Skills and Training, Valley State College</div>
           <ul class="tl-list">
@@ -624,9 +830,9 @@
         </div>
       </div>
 
-      <div class="tl-item">
+      <div class="tl-item reveal">
         <div class="tl-date">2026</div>
-        <div>
+        <div class="tl-card">
           <div class="tl-role">Program Coordinator — Welcome and Farewell Program</div>
           <div class="tl-org">Valley State College, held at CBC Lords Plaza</div>
           <ul class="tl-list">
@@ -642,15 +848,13 @@
 
 <section id="certificates">
   <div class="wrap">
-    <div class="section-head">
-      <div>
-        <span class="section-num">03 — RECORD</span>
-        <h2 class="section-title">Certificates and achievements</h2>
-      </div>
+    <div class="section-head reveal">
+      <span class="section-num">03 — Record</span>
+      <h2 class="section-title">Certificates & <span class="grad-text">achievements</span></h2>
       <p class="section-sub">14 verified entries, arranged chronologically. Duplicate scans have been removed from the record.</p>
     </div>
 
-    <div class="cert-filter" id="certFilter">
+    <div class="cert-filter reveal" data-delay="1">
       <button class="chip active" data-filter="all">All</button>
       <button class="chip" data-filter="finance">Finance and markets</button>
       <button class="chip" data-filter="college">College recognition</button>
@@ -658,170 +862,168 @@
       <button class="chip" data-filter="other">Other</button>
     </div>
 
-    <div class="cert-ledger" id="certLedger">
+    <div class="cert-grid" id="certGrid">
 
-      <div class="cert-row" data-filter="college" data-img="assets/01-vmep-2024.jpeg" data-cap="V-MEP — Certificate of Recognition, 28 June 2024">
-        <div class="cert-date"><b>28 Jun</b>2024</div>
-        <div>
+      <div class="cert-card reveal" data-filter="college" data-img="assets/01-vmep-2024.jpeg" data-cap="V-MEP — Certificate of Recognition, 28 June 2024">
+        <div class="thumb"><img src="assets/01-vmep-2024.jpeg" alt="V-MEP certificate of recognition" loading="lazy"></div>
+        <div class="body">
+          <span class="cert-date">28 JUN 2024</span>
           <div class="cert-title">Certificate of Recognition — V-MEP</div>
           <div class="cert-meta">Valley State's Marketing Experiment Project · Team "The Elite", BBA 4th Semester · Department of Marketing, Valley State College</div>
-          <span class="cert-tag">College</span>
+          <span class="cert-tag college">College</span>
         </div>
-        <div class="cert-thumb"><img src="assets/01-vmep-2024.jpeg" alt="V-MEP certificate of recognition"></div>
       </div>
 
-      <div class="cert-row" data-filter="sports" data-img="assets/02-vsports-futsal-2024.jpeg" data-cap="V-Sports 2024 — Certificate of Achievement, 22 Nov 2024">
-        <div class="cert-date"><b>22 Nov</b>2024</div>
-        <div>
+      <div class="cert-card reveal" data-filter="sports" data-img="assets/02-vsports-futsal-2024.jpeg" data-cap="V-Sports 2024 — Certificate of Achievement, 22 Nov 2024">
+        <div class="thumb"><img src="assets/02-vsports-futsal-2024.jpeg" alt="V-Sports 2024 futsal certificate" loading="lazy"></div>
+        <div class="body">
+          <span class="cert-date">22 NOV 2024</span>
           <div class="cert-title">Certificate of Achievement — Futsal, 1st Position</div>
           <div class="cert-meta">V-Sports 2024, BBA Fifth Semester · Sports Club of Valley State College, Chitwan</div>
-          <span class="cert-tag">Sports</span>
+          <span class="cert-tag sports">Sports</span>
         </div>
-        <div class="cert-thumb"><img src="assets/02-vsports-futsal-2024.jpeg" alt="V-Sports 2024 futsal certificate"></div>
       </div>
 
-      <div class="cert-row" data-filter="college" data-img="assets/03-peer-mentoring-2025.jpeg" data-cap="Certificate of Recognition — Trainer, Peer Mentoring Session, 1 March 2025">
-        <div class="cert-date"><b>1 Mar</b>2025</div>
-        <div>
+      <div class="cert-card reveal" data-filter="finance" data-img="assets/03-peer-mentoring-2025.jpeg" data-cap="Certificate of Recognition — Trainer, Peer Mentoring Session, 1 March 2025">
+        <div class="thumb"><img src="assets/03-peer-mentoring-2025.jpeg" alt="Peer mentoring trainer certificate" loading="lazy"></div>
+        <div class="body">
+          <span class="cert-date">1 MAR 2025</span>
           <div class="cert-title">Certificate of Recognition — Trainer</div>
           <div class="cert-meta">Peer Mentoring Session, Nepali Share Market Workshop · Seminar Hall, Valley State College</div>
-          <span class="cert-tag">Finance</span>
+          <span class="cert-tag finance">Finance</span>
         </div>
-        <div class="cert-thumb"><img src="assets/03-peer-mentoring-2025.jpeg" alt="Peer mentoring trainer certificate"></div>
       </div>
 
-      <div class="cert-row" data-filter="finance" data-img="assets/04-capital-market-quiz-2025.jpeg" data-cap="National Level Capital Market Quiz 2025 — Certificate of Participation">
-        <div class="cert-date"><b>Chaitra</b>2081 B.S.</div>
-        <div>
+      <div class="cert-card reveal" data-filter="finance" data-img="assets/04-capital-market-quiz-2025.jpeg" data-cap="National Level Capital Market Quiz 2025 — Certificate of Participation">
+        <div class="thumb"><img src="assets/04-capital-market-quiz-2025.jpeg" alt="Capital Market Quiz 2025 certificate" loading="lazy"></div>
+        <div class="body">
+          <span class="cert-date">CHAITRA 2081 B.S.</span>
           <div class="cert-title">National Level Capital Market Quiz 2025</div>
           <div class="cert-meta">Global Money Week · hosted by Presidency College of Management Sciences, with SEBON, MBAN, Stock Brokers' Association of Nepal</div>
-          <span class="cert-tag">Finance</span>
+          <span class="cert-tag finance">Finance</span>
         </div>
-        <div class="cert-thumb"><img src="assets/04-capital-market-quiz-2025.jpeg" alt="Capital Market Quiz 2025 certificate"></div>
       </div>
 
-      <div class="cert-row" data-filter="finance" data-img="assets/05-sani-internship-2025.jpeg" data-cap="Internship Certificate — Sani Securities Company Ltd., 24 Aug – 16 Nov 2025">
-        <div class="cert-date"><b>Aug–Nov</b>2025</div>
-        <div>
+      <div class="cert-card reveal" data-filter="finance" data-img="assets/05-sani-internship-2025.jpeg" data-cap="Internship Certificate — Sani Securities Company Ltd., 24 Aug – 16 Nov 2025">
+        <div class="thumb"><img src="assets/05-sani-internship-2025.jpeg" alt="Sani Securities internship certificate" loading="lazy"></div>
+        <div class="body">
+          <span class="cert-date">AUG–NOV 2025</span>
           <div class="cert-title">Internship Certificate</div>
           <div class="cert-meta">Sani Securities Company Ltd., Stock Broker No. 42 · Customer Service, Accounting and Trading Department</div>
-          <span class="cert-tag">Finance</span>
+          <span class="cert-tag finance">Finance</span>
         </div>
-        <div class="cert-thumb"><img src="assets/05-sani-internship-2025.jpeg" alt="Sani Securities internship certificate"></div>
       </div>
 
-      <div class="cert-row" data-filter="other" data-img="assets/06-intl-conference-2025.jpeg" data-cap="Certificate of Presentation — International Conference, St. Paul Institute, 15 Oct 2025">
-        <div class="cert-date"><b>15 Oct</b>2025</div>
-        <div>
+      <div class="cert-card reveal" data-filter="other" data-img="assets/06-intl-conference-2025.jpeg" data-cap="Certificate of Presentation — International Conference, St. Paul Institute, 15 Oct 2025">
+        <div class="thumb"><img src="assets/06-intl-conference-2025.jpeg" alt="International conference presentation certificate" loading="lazy"></div>
+        <div class="body">
+          <span class="cert-date">15 OCT 2025</span>
           <div class="cert-title">Certificate of Presentation — International Conference</div>
           <div class="cert-meta">"Examining the Relations of Global Macroeconomic Indicators with Nepal Stock Exchange" · St. Paul Institute of Professional Studies, Indore</div>
-          <span class="cert-tag">Research</span>
+          <span class="cert-tag other">Research</span>
         </div>
-        <div class="cert-thumb"><img src="assets/06-intl-conference-2025.jpeg" alt="International conference presentation certificate"></div>
       </div>
 
-      <div class="cert-row" data-filter="finance" data-img="assets/07-nspc-2026.jpeg" data-cap="NSPC 2026 — National Stock Pitching Competition, Certificate of Participation">
-        <div class="cert-date"><b>Provincial</b>Round, 2026</div>
-        <div>
+      <div class="cert-card reveal" data-filter="finance" data-img="assets/07-nspc-2026.jpeg" data-cap="NSPC 2026 — National Stock Pitching Competition, Certificate of Participation">
+        <div class="thumb"><img src="assets/07-nspc-2026.jpeg" alt="NSPC 2026 stock pitching certificate" loading="lazy"></div>
+        <div class="body">
+          <span class="cert-date">PROVINCIAL ROUND, 2026</span>
           <div class="cert-title">National Stock Pitching Competition (NSPC) 2026</div>
           <div class="cert-meta">Stock Brokers' Association of Nepal and KUSOM Finance Club</div>
-          <span class="cert-tag">Finance</span>
+          <span class="cert-tag finance">Finance</span>
         </div>
-        <div class="cert-thumb"><img src="assets/07-nspc-2026.jpeg" alt="NSPC 2026 stock pitching certificate"></div>
       </div>
 
-      <div class="cert-row" data-filter="finance" data-img="assets/08-capital-market-quiz-2026.jpeg" data-cap="National Level Capital Market Quiz 2026 — Certificate of Participation, 20–21 March 2026">
-        <div class="cert-date"><b>20–21 Mar</b>2026</div>
-        <div>
+      <div class="cert-card reveal" data-filter="finance" data-img="assets/08-capital-market-quiz-2026.jpeg" data-cap="National Level Capital Market Quiz 2026 — Certificate of Participation, 20–21 March 2026">
+        <div class="thumb"><img src="assets/08-capital-market-quiz-2026.jpeg" alt="Capital Market Quiz 2026 certificate" loading="lazy"></div>
+        <div class="body">
+          <span class="cert-date">20–21 MAR 2026</span>
           <div class="cert-title">National Level Capital Market Quiz 2026</div>
           <div class="cert-meta">Global Money Week · hosted by Nepal Tourism and Hotel Management College, organised by SEBON, NEPSE, CDS and Clearing Ltd. and partners</div>
-          <span class="cert-tag">Finance</span>
+          <span class="cert-tag finance">Finance</span>
         </div>
-        <div class="cert-thumb"><img src="assets/08-capital-market-quiz-2026.jpeg" alt="Capital Market Quiz 2026 certificate"></div>
       </div>
 
-      <div class="cert-row" data-filter="finance" data-img="assets/09-publication-2026.jpeg" data-cap="Publication Certificate — Himalayan Journal of Multidisciplinary Research, 5 May 2026">
-        <div class="cert-date"><b>5 May</b>2026</div>
-        <div>
+      <div class="cert-card reveal" data-filter="finance" data-img="assets/09-publication-2026.jpeg" data-cap="Publication Certificate — Himalayan Journal of Multidisciplinary Research, 5 May 2026">
+        <div class="thumb"><img src="assets/09-publication-2026.jpeg" alt="Publication certificate" loading="lazy"></div>
+        <div class="body">
+          <span class="cert-date">5 MAY 2026</span>
           <div class="cert-title">Publication Certificate</div>
           <div class="cert-meta">"Global Macroeconomic Forces and Stock Market Performance: Evidence from a Developing Economy" · Himalayan Journal of Multidisciplinary Research (HJMR)</div>
-          <span class="cert-tag">Research</span>
+          <span class="cert-tag finance">Research</span>
         </div>
-        <div class="cert-thumb"><img src="assets/09-publication-2026.jpeg" alt="Publication certificate"></div>
       </div>
 
-      <div class="cert-row" data-filter="college" data-img="assets/10-event-manager-2026.jpeg" data-cap="Certificate of Recognition — Event Manager, 16 June 2026">
-        <div class="cert-date"><b>16 Jun</b>2026</div>
-        <div>
+      <div class="cert-card reveal" data-filter="college" data-img="assets/10-event-manager-2026.jpeg" data-cap="Certificate of Recognition — Event Manager, 16 June 2026">
+        <div class="thumb"><img src="assets/10-event-manager-2026.jpeg" alt="Event manager certificate" loading="lazy"></div>
+        <div class="body">
+          <span class="cert-date">16 JUN 2026</span>
           <div class="cert-title">Certificate of Recognition — Event Manager</div>
           <div class="cert-meta">Parliamentary Simulation of Budget Speech and Q&A Session · Department of Soft Skills and Training, Valley State College</div>
-          <span class="cert-tag">College</span>
+          <span class="cert-tag college">College</span>
         </div>
-        <div class="cert-thumb"><img src="assets/10-event-manager-2026.jpeg" alt="Event manager certificate"></div>
       </div>
 
-      <div class="cert-row" data-filter="college" data-img="assets/11-roleplay-2026.jpeg" data-cap="Certificate of Recognition — Role Play, Leader of Parliamentary Party, 16 June 2026">
-        <div class="cert-date"><b>16 Jun</b>2026</div>
-        <div>
+      <div class="cert-card reveal" data-filter="college" data-img="assets/11-roleplay-2026.jpeg" data-cap="Certificate of Recognition — Role Play, Leader of Parliamentary Party, 16 June 2026">
+        <div class="thumb"><img src="assets/11-roleplay-2026.jpeg" alt="Role play certificate" loading="lazy"></div>
+        <div class="body">
+          <span class="cert-date">16 JUN 2026</span>
           <div class="cert-title">Certificate of Recognition — Role Play</div>
           <div class="cert-meta">Leader of the Parliamentary Party of Shram Sanskriti Party · Parliamentary Simulation of Budget Speech and Q&A Session</div>
-          <span class="cert-tag">College</span>
+          <span class="cert-tag college">College</span>
         </div>
-        <div class="cert-thumb"><img src="assets/11-roleplay-2026.jpeg" alt="Role play certificate"></div>
       </div>
 
-      <div class="cert-row" data-filter="sports" data-img="assets/12-futsal-2nd-2026.jpeg" data-cap="Certificate of Achievement — Intra-College Futsal Tournament 2026, 2nd Position, 26 June 2026">
-        <div class="cert-date"><b>26 Jun</b>2026</div>
-        <div>
+      <div class="cert-card reveal" data-filter="sports" data-img="assets/12-futsal-2nd-2026.jpeg" data-cap="Certificate of Achievement — Intra-College Futsal Tournament 2026, 2nd Position, 26 June 2026">
+        <div class="thumb"><img src="assets/12-futsal-2nd-2026.jpeg" alt="Intra-college futsal 2026 certificate" loading="lazy"></div>
+        <div class="body">
+          <span class="cert-date">26 JUN 2026</span>
           <div class="cert-title">Certificate of Achievement — Futsal, 2nd Position</div>
           <div class="cert-meta">Intra-College Futsal Tournament 2026, BBA 8th Semester · Sports Club of Valley State College, Chitwan</div>
-          <span class="cert-tag">Sports</span>
+          <span class="cert-tag sports">Sports</span>
         </div>
-        <div class="cert-thumb"><img src="assets/12-futsal-2nd-2026.jpeg" alt="Intra-college futsal 2026 certificate"></div>
       </div>
 
-      <div class="cert-row" data-filter="college" data-img="assets/13-welcome-farewell-2026.jpeg" data-cap="Certificate of Appreciation — Event Coordinator, 28 Ashar 2083">
-        <div class="cert-date"><b>28 Ashar</b>2083 B.S.</div>
-        <div>
+      <div class="cert-card reveal" data-filter="college" data-img="assets/13-welcome-farewell-2026.jpeg" data-cap="Certificate of Appreciation — Event Coordinator, 28 Ashar 2083">
+        <div class="thumb"><img src="assets/13-welcome-farewell-2026.jpeg" alt="Welcome and farewell certificate" loading="lazy"></div>
+        <div class="body">
+          <span class="cert-date">28 ASHAR 2083 B.S.</span>
           <div class="cert-title">Certificate of Appreciation — Event Coordinator</div>
           <div class="cert-meta">Welcome and Farewell Program, held at CBC Lords Plaza · organized by Valley State College</div>
-          <span class="cert-tag">College</span>
+          <span class="cert-tag college">College</span>
         </div>
-        <div class="cert-thumb"><img src="assets/13-welcome-farewell-2026.jpeg" alt="Welcome and farewell certificate"></div>
       </div>
 
-      <div class="cert-row" data-filter="other" data-img="assets/14-yamaha-safe-riding.jpeg" data-cap="Yamaha Safe Riding Science — Participation Certificate">
-        <div class="cert-date"><b>Undated</b>Record</div>
-        <div>
+      <div class="cert-card reveal" data-filter="other" data-img="assets/14-yamaha-safe-riding.jpeg" data-cap="Yamaha Safe Riding Science — Participation Certificate">
+        <div class="thumb"><img src="assets/14-yamaha-safe-riding.jpeg" alt="Yamaha safe riding certificate" loading="lazy"></div>
+        <div class="body">
+          <span class="cert-date">UNDATED RECORD</span>
           <div class="cert-title">Participation Certificate — Yamaha Safe Riding Science</div>
           <div class="cert-meta">Organized by M.A.W. Rides Pvt. Ltd. · scientific skills for safe motorcycle riding</div>
-          <span class="cert-tag">Other</span>
+          <span class="cert-tag other">Other</span>
         </div>
-        <div class="cert-thumb"><img src="assets/14-yamaha-safe-riding.jpeg" alt="Yamaha safe riding certificate"></div>
       </div>
 
     </div>
   </div>
 </section>
 
-<section id="publications" style="background:var(--parchment-2);">
+<section id="publications">
   <div class="wrap">
-    <div class="section-head">
-      <div>
-        <span class="section-num">04 — PUBLICATIONS</span>
-        <h2 class="section-title">Research in print</h2>
-      </div>
+    <div class="section-head reveal">
+      <span class="section-num">04 — Publications</span>
+      <h2 class="section-title">Research in <span class="grad-text">print</span></h2>
       <p class="section-sub">Two published pieces on markets, macroeconomics, and the internship that started it.</p>
     </div>
     <div class="pub-list">
-      <div class="pub-item">
+      <div class="pub-item reveal">
         <div>
           <div class="pub-title">"Global Macroeconomic Forces and Stock Market Performance: Evidence from a Developing Economy"</div>
           <div class="pub-venue">Published in the <b>Himalayan Journal of Multidisciplinary Research (HJMR)</b></div>
         </div>
         <div class="pub-date">5 MAY 2026</div>
       </div>
-      <div class="pub-item">
+      <div class="pub-item reveal" data-delay="1">
         <div>
           <div class="pub-title">"From Campus to Capital Market: My Internship Journey at Sani Securities Company Ltd."</div>
           <div class="pub-venue">Published in <b>V-Smile Magazine / Journal</b>, ISSN: 3102-0461</div>
@@ -834,22 +1036,20 @@
 
 <section id="education">
   <div class="wrap">
-    <div class="section-head">
-      <div>
-        <span class="section-num">05 — EDUCATION</span>
-        <h2 class="section-title">Academic record</h2>
-      </div>
+    <div class="section-head reveal">
+      <span class="section-num">05 — Education</span>
+      <h2 class="section-title">Academic <span class="grad-text">record</span></h2>
       <p class="section-sub">From secondary school to a BBA focused on capital markets.</p>
     </div>
     <div class="edu-grid">
-      <div class="edu-card">
-        <div class="edu-year">2022 — 2026 (EXPECTED)</div>
+      <div class="edu-card reveal">
+        <div class="edu-year">2022 — 2026 (Expected)</div>
         <div class="edu-degree">Bachelor of Business Administration</div>
         <div class="edu-school">Valley State College, Chitwan, Bharatpur · affiliated to Pokhara University</div>
         <div class="edu-gpa">8th Semester · BBA Scholar</div>
       </div>
-      <div class="edu-card">
-        <div class="edu-year">COMPLETED 2021 (A.D.)</div>
+      <div class="edu-card reveal" data-delay="1">
+        <div class="edu-year">Completed 2021 (A.D.)</div>
         <div class="edu-degree">+2 (Higher Secondary)</div>
         <div class="edu-school">Daisy English Boarding Secondary School</div>
         <div class="edu-gpa">GPA: 3.47 / 4.0</div>
@@ -858,19 +1058,17 @@
   </div>
 </section>
 
-<section style="background:var(--parchment-2);">
+<section id="skills">
   <div class="wrap">
-    <div class="section-head">
-      <div>
-        <span class="section-num">06 — CAPABILITIES</span>
-        <h2 class="section-title">Skills and languages</h2>
-      </div>
+    <div class="section-head reveal">
+      <span class="section-num">06 — Capabilities</span>
+      <h2 class="section-title">Skills & <span class="grad-text">languages</span></h2>
       <p class="section-sub">What I bring to a trading floor, a classroom, or an event committee.</p>
     </div>
     <div class="skills-wrap">
       <div>
-        <div class="side-title">SKILLS</div>
-        <div class="skill-tags">
+        <div class="side-title reveal" data-delay="1">Core Strengths</div>
+        <div class="skill-tags reveal" data-delay="2">
           <div class="skill-tag">Project management</div>
           <div class="skill-tag">Public relations</div>
           <div class="skill-tag">Teamwork</div>
@@ -882,16 +1080,38 @@
           <div class="skill-tag">Data analysis — SPSS, JAMOVI, Excel</div>
           <div class="skill-tag">Presentation skills</div>
         </div>
+        <div class="skill-bars reveal" data-delay="3" style="margin-top:34px;">
+          <div class="skill-row">
+            <div class="skill-name"><span>Capital Markets &amp; NEPSE Analysis</span><span>90%</span></div>
+            <div class="skill-bar"><i data-w="90%"></i></div>
+          </div>
+          <div class="skill-row">
+            <div class="skill-name"><span>Data Analysis (SPSS, JAMOVI, Excel)</span><span>85%</span></div>
+            <div class="skill-bar"><i data-w="85%"></i></div>
+          </div>
+          <div class="skill-row">
+            <div class="skill-name"><span>Research &amp; Academic Writing</span><span>88%</span></div>
+            <div class="skill-bar"><i data-w="88%"></i></div>
+          </div>
+          <div class="skill-row">
+            <div class="skill-name"><span>Leadership &amp; Public Speaking</span><span>92%</span></div>
+            <div class="skill-bar"><i data-w="92%"></i></div>
+          </div>
+          <div class="skill-row">
+            <div class="skill-name"><span>Event Management</span><span>87%</span></div>
+            <div class="skill-bar"><i data-w="87%"></i></div>
+          </div>
+        </div>
       </div>
       <div>
-        <div class="side-block">
-          <div class="side-title">LANGUAGES</div>
+        <div class="side-block reveal" data-delay="1">
+          <div class="side-title">Languages</div>
           <div class="lang-row"><span>English</span><span>Fluent</span></div>
           <div class="lang-row"><span>Nepali</span><span>Native</span></div>
           <div class="lang-row"><span>Hindi</span><span>Fluent</span></div>
         </div>
-        <div class="side-block">
-          <div class="side-title">CV REFERENCES</div>
+        <div class="side-block reveal" data-delay="2">
+          <div class="side-title">CV References</div>
           <div class="ref-list">
             <div class="ref-card">
               <div class="ref-name">Mr. Baburam Khanal</div>
@@ -918,29 +1138,35 @@
   </div>
 </section>
 
-<footer>
+<section class="cta-band">
   <div class="wrap">
-    <div class="footer-grid">
+    <h2 class="cta-title reveal">Open to internships, research collaborations,<br>and <span class="grad-text">finance roles</span> across Nepal's capital markets.</h2>
+    <p class="cta-sub reveal" data-delay="1">Every certificate on this page has been checked against the original scans and de-duplicated — the ledger above reflects one entry per achievement, arranged by date.</p>
+    <div class="cta-btns reveal" data-delay="2">
+      <a href="mailto:kandelbhuwan9845@gmail.com" class="btn btn-gold">Email me</a>
+      <a href="Bhuwan-Kandel-CV.pdf" download class="btn btn-primary">Download CV (PDF)</a>
+      <a href="#certificates" class="btn btn-ghost">Back to the ledger</a>
+    </div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="wrap">
+    <div class="foot-grid">
       <div>
-        <div class="footer-lede">Open to internships, research collaborations, and finance roles across Nepal's capital markets.</div>
-        <div class="footer-note">Every certificate on this page has been checked against the original scans and de-duplicated — the ledger above reflects one entry per achievement, arranged by date.</div>
-        <div class="hero-cta">
-          <a href="mailto:kandelbhuwan9845@gmail.com" class="btn btn-primary">Email me</a>
-          <a href="#certificates" class="btn btn-ghost">Back to the ledger</a>
-        </div>
-        <div class="footer-download">
-          <div class="download-h">DOWNLOAD CV</div>
-          <div class="download-row">
-            <a href="Bhuwan-Kandel-CV.pdf" download class="btn btn-primary">Download CV (PDF)</a>
-          </div>
-          <p class="download-note">A print-ready summary of this portfolio — CV references included.</p>
+        <div class="foot-name">Bhuwan <span class="grad-text">Kandel</span></div>
+        <div class="foot-role">BBA Scholar · Capital Markets</div>
+        <p class="foot-note">A print-ready summary of this portfolio — CV references included.</p>
+        <div class="foot-links">
+          <a href="Bhuwan-Kandel-CV.pdf" download class="foot-tag"><span class="dot"></span>Download CV</a>
+          <a href="#top" class="foot-tag"><span class="dot"></span>Back to top</a>
         </div>
       </div>
       <ul class="foot-contact-list">
-        <li><span class="k">PHONE</span><span>9848515544</span></li>
-        <li><span class="k">EMAIL</span><span>kandelbhuwan9845@gmail.com</span></li>
-        <li><span class="k">ADDRESS</span><span>Khairahani-9, Bharatpur, Chitwan, Nepal</span></li>
-        <li><span class="k">COLLEGE</span><span>Valley State College, Chitwan</span></li>
+        <li><span class="k">Phone</span><span>9848515544</span></li>
+        <li><span class="k">Email</span><span>kandelbhuwan9845@gmail.com</span></li>
+        <li><span class="k">Address</span><span>Khairahani-9, Bharatpur, Chitwan, Nepal</span></li>
+        <li><span class="k">College</span><span>Valley State College, Chitwan</span></li>
       </ul>
     </div>
     <div class="bottom-bar">
@@ -959,53 +1185,113 @@
 </div>
 
 <script>
-  // Mobile nav toggle
-  var navToggle = document.querySelector('.nav-toggle');
-  var navLinks = document.querySelector('nav.nav-links');
-  navToggle.addEventListener('click', function(){
-    navLinks.classList.toggle('open');
-  });
-  document.querySelectorAll('nav.nav-links a').forEach(function(a){
-    a.addEventListener('click', function(){ navLinks.classList.remove('open'); });
+(function(){
+  var reduced = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Nav scroll state
+  var navEl = document.querySelector('.site-nav');
+  function onScroll(){ navEl.classList.toggle('scrolled', window.scrollY > 20); }
+  window.addEventListener('scroll', onScroll, {passive:true}); onScroll();
+
+  // Mobile nav
+  var navToggle = document.getElementById('navToggle');
+  var navClose = document.getElementById('navClose');
+  var navLinks = document.getElementById('navLinks');
+  function toggleNav(open){
+    navLinks.classList.toggle('open', open);
+    document.body.style.overflow = open ? 'hidden' : '';
+  }
+  navToggle.addEventListener('click', function(){ toggleNav(true); });
+  navClose.addEventListener('click', function(){ toggleNav(false); });
+  navLinks.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click', function(){ toggleNav(false); });
   });
 
-  // Scroll reveal animations
-  var revealTargets = document.querySelectorAll('.section-head, .profile-grid > div, .tl-item, .cert-row, .pub-item, .edu-card, .skill-tags, .side-block, .ref-card, .footer-grid > div, .footer-download');
-  var reduced = (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches);
-  revealTargets.forEach(function(el, i){
-    el.classList.add('reveal-init');
-    el.style.transitionDelay = ((i % 6) * 80) + 'ms';
-  });
+  // Cursor glow (desktop only)
+  var glow = document.getElementById('cursorGlow');
+  if(window.matchMedia('(pointer:fine)').matches && !reduced){
+    document.addEventListener('mousemove', function(e){
+      glow.style.left = e.clientX + 'px';
+      glow.style.top = e.clientY + 'px';
+    });
+  } else { glow.style.display = 'none'; }
+
+  // Scroll reveal
+  var revealTargets = document.querySelectorAll('.reveal');
   if('IntersectionObserver' in window && !reduced){
     var io = new IntersectionObserver(function(entries){
       entries.forEach(function(en){
         if(en.isIntersecting){
-          var t = en.target;
-          t.classList.add('in-view');
-          setTimeout(function(){ t.style.transitionDelay = ''; }, 900);
-          io.unobserve(t);
+          en.target.classList.add('in-view');
+          io.unobserve(en.target);
         }
       });
     }, {threshold:0.12, rootMargin:'0px 0px -6% 0px'});
     revealTargets.forEach(function(el){ io.observe(el); });
   } else {
-    revealTargets.forEach(function(el){ el.classList.remove('reveal-init'); });
+    revealTargets.forEach(function(el){ el.classList.add('in-view'); });
   }
 
-  // Filter chips
+  // Animated count-up stats
+  function animateCount(el){
+    var target = parseInt(el.getAttribute('data-count'), 10);
+    var dur = 1600;
+    var start = null;
+    function tick(ts){
+      if(!start) start = ts;
+      var p = Math.min((ts - start) / dur, 1);
+      var eased = 1 - Math.pow(1 - p, 3);
+      el.textContent = Math.round(eased * target);
+      if(p < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  }
+  var counters = document.querySelectorAll('.count');
+  if(!reduced && 'IntersectionObserver' in window){
+    var cio = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if(en.isIntersecting){
+          animateCount(en.target);
+          cio.unobserve(en.target);
+        }
+      });
+    }, {threshold:0.4});
+    counters.forEach(function(c){ cio.observe(c); });
+  } else {
+    counters.forEach(function(c){ c.textContent = c.getAttribute('data-count'); });
+  }
+
+  // Skill bars
+  var bars = document.querySelectorAll('.skill-bar i');
+  function fillBar(el){
+    el.style.width = el.getAttribute('data-w');
+  }
+  if(!reduced && 'IntersectionObserver' in window){
+    var bio = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if(en.isIntersecting){
+          fillBar(en.target);
+          bio.unobserve(en.target);
+        }
+      });
+    }, {threshold:0.3});
+    bars.forEach(function(b){ bio.observe(b); });
+  } else {
+    bars.forEach(function(b){ fillBar(b); });
+  }
+
+  // Filter chips for certificates
   var chips = document.querySelectorAll('.chip');
-  var rows = document.querySelectorAll('.cert-row');
+  var cards = document.querySelectorAll('.cert-card');
   chips.forEach(function(chip){
     chip.addEventListener('click', function(){
       chips.forEach(function(c){ c.classList.remove('active'); });
       chip.classList.add('active');
       var f = chip.getAttribute('data-filter');
-      rows.forEach(function(row){
-        if(f === 'all' || row.getAttribute('data-filter') === f){
-          row.style.display = 'grid';
-        } else {
-          row.style.display = 'none';
-        }
+      cards.forEach(function(card){
+        var match = (f === 'all') || (card.getAttribute('data-filter') === f);
+        card.style.display = match ? '' : 'none';
+        if(match) card.classList.add('in-view');
       });
     });
   });
@@ -1015,21 +1301,29 @@
   var lightboxImg = document.getElementById('lightboxImg');
   var lightboxCap = document.getElementById('lightboxCap');
   var lightboxClose = document.getElementById('lightboxClose');
-
-  rows.forEach(function(row){
-    row.addEventListener('click', function(){
-      lightboxImg.src = row.getAttribute('data-img');
-      lightboxCap.textContent = row.getAttribute('data-cap');
-      lightbox.classList.add('open');
+  function openLb(img, cap){
+    lightboxImg.src = img;
+    lightboxCap.textContent = cap;
+    lightbox.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLb(){
+    lightbox.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  cards.forEach(function(card){
+    card.addEventListener('click', function(){
+      openLb(card.getAttribute('data-img'), card.getAttribute('data-cap'));
     });
   });
-  lightboxClose.addEventListener('click', function(){ lightbox.classList.remove('open'); });
+  lightboxClose.addEventListener('click', closeLb);
   lightbox.addEventListener('click', function(e){
-    if(e.target === lightbox){ lightbox.classList.remove('open'); }
+    if(e.target === lightbox){ closeLb(); }
   });
   document.addEventListener('keydown', function(e){
-    if(e.key === 'Escape'){ lightbox.classList.remove('open'); }
+    if(e.key === 'Escape'){ closeLb(); }
   });
+})();
 </script>
 
 </body>
